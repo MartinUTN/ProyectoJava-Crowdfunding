@@ -13,7 +13,7 @@ public class Conexion {
     static {
         try (InputStream input = Conexion.class.getClassLoader().getResourceAsStream("database.properties")) {
             if (input == null) {
-                System.err.println("Error: El archivo database.properties no se encontró en el classpath.");
+                System.err.println("Error: El archivo database.properties no se encontró en el classpath. Asegúrate de que está en src/main/resources y tu pom.xml está configurado para incluirlo.");
                 throw new IOException("El archivo database.properties no se puede cargar.");
             }
             PROPS.load(input);
@@ -35,4 +35,3 @@ public class Conexion {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
-

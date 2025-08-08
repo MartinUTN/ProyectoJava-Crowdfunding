@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,9 +14,7 @@ import java.io.IOException;
 import modelo.Usuario;
 import repositorio.UsuarioDAO;
 
-/**
- * Servlet implementation class Signin
- */
+
 @WebServlet({ "/SIGNIN", "/Signin", "/signin", "/SignIn" })
 public class Signin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,35 +31,38 @@ public class Signin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		
+
 		String email = request.getParameter("email");
 		String contrasenia = request.getParameter("password");
-		
+
+		Usuario usuario = null;
+
 		try {
-			Usuario usuario = usuarioDAO.validarUsuario(email, contrasenia);
-			
+			usuario = usuarioDAO.validarUsuario(email, contrasenia);
+
 			if (usuario != null) {
 				request.getSession().setAttribute("usuario", usuario);
-				response.sendRedirect(request.getContextPath() + "/home.jsp");
+
+				List<Usuario> listaUsuarios = usuarioDAO.obtenerTodos();
+				request.setAttribute("usuarios", listaUsuarios);
+
+				request.getRequestDispatcher("home.jsp").forward(request, response);
 			} else {
 				request.setAttribute("error", "Email o contraseña incorrectos.");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {
+			// **CÓDIGO DE DEPURACIÓN AGREGADO**
 			e.printStackTrace();
-			request.setAttribute("error", "Error en la base de datos.");
+			// Pasamos el mensaje de error exacto de la base de datos al JSP
+			request.setAttribute("error", "Error de conexión a la base de datos: " + e.getMessage());
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}
-
 
 }

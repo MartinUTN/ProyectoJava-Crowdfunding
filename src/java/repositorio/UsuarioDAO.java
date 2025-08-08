@@ -8,12 +8,6 @@ import db.Conexion;
 
 public class UsuarioDAO {
 
-    /**
-     * Inserta un nuevo usuario en la base de datos.
-     * El idUsuario se genera automáticamente y se asigna al objeto.
-     * @param usuario El objeto Usuario a insertar.
-     * @throws SQLException Si ocurre un error de SQL.
-     */
     public void crear(Usuario usuario) throws SQLException {
         String sql = "INSERT INTO Usuario(email, contrasenia, nombre, apellido, telefono, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = Conexion.obtenerConexion();
@@ -38,12 +32,7 @@ public class UsuarioDAO {
         }
     }
 
-    /**
-     * Obtiene un usuario por su ID.
-     * @param idUsuario El ID del usuario a buscar.
-     * @return El objeto Usuario si se encuentra, de lo contrario, null.
-     * @throws SQLException Si ocurre un error de SQL.
-     */
+
     public Usuario obtenerUno(int idUsuario) throws SQLException {
         String sql = "SELECT * FROM Usuario WHERE idUsuario = ?";
         try (Connection con = Conexion.obtenerConexion();
@@ -65,13 +54,6 @@ public class UsuarioDAO {
         return null;
     }
 
-    /**
-     * Valida si un usuario existe con el email y contraseña proporcionados.
-     * @param email El email del usuario.
-     * @param contrasenia La contraseña del usuario.
-     * @return El objeto Usuario si las credenciales son correctas, de lo contrario, null.
-     * @throws SQLException Si ocurre un error de SQL.
-     */
     public Usuario validarUsuario(String email, String contrasenia) throws SQLException {
         String sql = "SELECT idUsuario, email, contrasenia, nombre, apellido, telefono, fechaNacimiento FROM Usuario WHERE email = ? AND contrasenia = ?";
         Usuario usuario = null;
@@ -98,11 +80,7 @@ public class UsuarioDAO {
         return usuario;
     }
     
-    /**
-     * Obtiene una lista de todos los usuarios de la base de datos.
-     * @return Una lista de objetos Usuario.
-     * @throws SQLException Si ocurre un error de SQL.
-     */
+
     public List<Usuario> obtenerTodos() throws SQLException {
         List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM Usuario";
@@ -124,11 +102,6 @@ public class UsuarioDAO {
         return lista;
     }
 
-    /**
-     * Actualiza los datos de un usuario en la base de datos.
-     * @param usuario El objeto Usuario con los datos actualizados.
-     * @throws SQLException Si ocurre un error de SQL.
-     */
     public void actualizar(Usuario usuario) throws SQLException {
         String sql = "UPDATE Usuario SET email = ?, contrasenia = ?, nombre = ?, apellido = ?, telefono = ?, fechaNacimiento = ? WHERE idUsuario = ?";
         try (Connection con = Conexion.obtenerConexion();
@@ -148,11 +121,6 @@ public class UsuarioDAO {
         }
     }
 
-    /**
-     * Elimina un usuario de la base de datos por su ID.
-     * @param idUsuario El ID del usuario a eliminar.
-     * @throws SQLException Si ocurre un error de SQL.
-     */
     public void eliminar(int idUsuario) throws SQLException {
         String sql = "DELETE FROM Usuario WHERE idUsuario = ?";
         try (Connection con = Conexion.obtenerConexion();
