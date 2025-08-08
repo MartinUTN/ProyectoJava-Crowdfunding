@@ -1,11 +1,15 @@
 package modelo;
 
+import java.util.Date;
+
 public class Usuario {
     private int idUsuario;
     private String email;
     private String contrasenia;
     private String nombre;
     private String apellido;
+    private String telefono;
+    private Date fechaNacimiento;
 
     public Usuario(String email, String contrasenia, String nombre, String apellido) {
         this.email = email;
@@ -14,12 +18,14 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public Usuario(int idUsuario, String email, String contrasenia, String nombre, String apellido) {
+    public Usuario(int idUsuario, String email, String contrasenia, String nombre, String apellido, String telefono, Date fechaNacimiento) {
         this.idUsuario = idUsuario;
         this.email = email;
         this.contrasenia = contrasenia;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public int getIdUsuario() {
@@ -62,6 +68,22 @@ public class Usuario {
         this.apellido = apellido;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -69,6 +91,8 @@ public class Usuario {
                 ", email='" + email + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
                 '}';
     }
 }

@@ -51,10 +51,10 @@ public class ClienteDAO {
 
     public List<Cliente> obtenerTodos() throws SQLException {
         List<Cliente> lista = new ArrayList<>();
-        String sql = "SELECT * FROM Usuario";
+        String sql = "SELECT * FROM Usuario WHERE telefono IS NOT NULL OR fechaNacimiento IS NOT NULL";
         try (Connection con = Conexion.obtenerConexion();
-             Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 lista.add(new Cliente(
                     rs.getInt("idUsuario"),

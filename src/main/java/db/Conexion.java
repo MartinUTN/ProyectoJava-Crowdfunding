@@ -12,9 +12,16 @@ public class Conexion {
 
     static {
         try (InputStream input = Conexion.class.getClassLoader().getResourceAsStream("database.properties")) {
+            if (input == null) {
+                System.err.println("Error: El archivo database.properties no se encontró en el classpath.");
+                throw new IOException("El archivo database.properties no se puede cargar.");
+            }
             PROPS.load(input);
-        } catch (IOException ex) {
+            // Carga el driver de JDBC
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
+            throw new ExceptionInInitializerError("No se pudo inicializar la conexión con la base de datos.");
         }
     }
 
