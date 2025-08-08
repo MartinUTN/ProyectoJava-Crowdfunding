@@ -17,11 +17,13 @@ public class Conexion {
                 throw new IOException("El archivo database.properties no se puede cargar.");
             }
             PROPS.load(input);
-            // Carga el driver de JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (IOException | ClassNotFoundException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
-            throw new ExceptionInInitializerError("No se pudo inicializar la conexión con la base de datos.");
+            throw new ExceptionInInitializerError("No se pudo inicializar la conexión con la base de datos debido a un error de I/O.");
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+            throw new ExceptionInInitializerError("No se pudo inicializar la conexión con la base de datos. Asegúrate de que el driver de MySQL está en tu classpath.");
         }
     }
 
@@ -33,3 +35,4 @@ public class Conexion {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
+
