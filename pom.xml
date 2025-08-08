@@ -1,58 +1,55 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>crowdfunding.com</groupId>
   <artifactId>crowdfunding-maven</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
   </properties>
 
   <dependencies>
-    <!-- MySQL Connector -->
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.33</version>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.33</version>
     </dependency>
-
-    <!-- Servlet API -->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>6.0.0</version>
+        <scope>provided</scope>
     </dependency>
-
-    <!-- JSTL -->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
+        <groupId>jakarta.servlet.jsp.jstl</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+        <version>3.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.glassfish.web</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+        <version>3.0.1</version>
     </dependency>
   </dependencies>
-
+  
   <build>
     <finalName>crowdfunding-maven</finalName>
-    <plugins>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.3</version>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-      </plugin>
-    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.3</version>
+          <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 </project>
-
