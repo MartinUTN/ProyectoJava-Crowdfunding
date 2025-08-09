@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
-    <title>Java Web Intro</title>
+    <link rel="icon" href="./assets/simbolo-dinero.png">
+    <title>Login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="style/signin.css" rel="stylesheet">
+    <link href="style/login.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
