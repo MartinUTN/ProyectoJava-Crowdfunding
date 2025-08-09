@@ -38,12 +38,12 @@ public class Signin extends HttpServlet {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 
 		String email = request.getParameter("email");
-		String contrasenia = request.getParameter("password");
+		String password = request.getParameter("password");
 
 		Usuario usuario = null;
 
 		try {
-			usuario = usuarioDAO.validarUsuario(email, contrasenia);
+			usuario = usuarioDAO.validarUsuario(email, password);
 
 			if (usuario != null) {
 				request.getSession().setAttribute("usuario", usuario);
@@ -57,9 +57,7 @@ public class Signin extends HttpServlet {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {
-			// **CÓDIGO DE DEPURACIÓN AGREGADO**
 			e.printStackTrace();
-			// Pasamos el mensaje de error exacto de la base de datos al JSP
 			request.setAttribute("error", "Error de conexión a la base de datos: " + e.getMessage());
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}

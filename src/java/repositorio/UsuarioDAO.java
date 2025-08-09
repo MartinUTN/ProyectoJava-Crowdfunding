@@ -9,11 +9,11 @@ import db.Conexion;
 public class UsuarioDAO {
 
     public void crear(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO Usuario(email, contrasenia, nombre, apellido, telefono, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuario(email, password, nombre, apellido, telefono, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, usuario.getEmail());
-            ps.setString(2, usuario.getContrasenia());
+            ps.setString(2, usuario.getPassword());
             ps.setString(3, usuario.getNombre());
             ps.setString(4, usuario.getApellido());
             ps.setString(5, usuario.getTelefono());
@@ -43,7 +43,7 @@ public class UsuarioDAO {
                 return new Usuario(
                     rs.getInt("idUsuario"),
                     rs.getString("email"),
-                    rs.getString("contrasenia"),
+                    rs.getString("password"),
                     rs.getString("nombre"),
                     rs.getString("apellido"),
                     rs.getString("telefono"),
@@ -54,21 +54,21 @@ public class UsuarioDAO {
         return null;
     }
 
-    public Usuario validarUsuario(String email, String contrasenia) throws SQLException {
-        String sql = "SELECT idUsuario, email, contrasenia, nombre, apellido, telefono, fechaNacimiento FROM Usuario WHERE email = ? AND contrasenia = ?";
+    public Usuario validarUsuario(String email, String password) throws SQLException {
+        String sql = "SELECT idUsuario, email, password, nombre, apellido, telefono, fechaNacimiento FROM Usuario WHERE email = ? AND password = ?";
         Usuario usuario = null;
 
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, email);
-            ps.setString(2, contrasenia);
+            ps.setString(2, password);
             
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     usuario = new Usuario(
                         rs.getInt("idUsuario"),
                         rs.getString("email"),
-                        rs.getString("contrasenia"),
+                        rs.getString("password"),
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("telefono"),
@@ -91,7 +91,7 @@ public class UsuarioDAO {
                 lista.add(new Usuario(
                     rs.getInt("idUsuario"),
                     rs.getString("email"),
-                    rs.getString("contrasenia"),
+                    rs.getString("password"),
                     rs.getString("nombre"),
                     rs.getString("apellido"),
                     rs.getString("telefono"),
@@ -103,11 +103,11 @@ public class UsuarioDAO {
     }
 
     public void actualizar(Usuario usuario) throws SQLException {
-        String sql = "UPDATE Usuario SET email = ?, contrasenia = ?, nombre = ?, apellido = ?, telefono = ?, fechaNacimiento = ? WHERE idUsuario = ?";
+        String sql = "UPDATE Usuario SET email = ?, password = ?, nombre = ?, apellido = ?, telefono = ?, fechaNacimiento = ? WHERE idUsuario = ?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, usuario.getEmail());
-            ps.setString(2, usuario.getContrasenia());
+            ps.setString(2, usuario.getPassword());
             ps.setString(3, usuario.getNombre());
             ps.setString(4, usuario.getApellido());
             ps.setString(5, usuario.getTelefono());

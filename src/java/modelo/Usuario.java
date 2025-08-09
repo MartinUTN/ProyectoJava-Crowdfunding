@@ -5,23 +5,23 @@ import java.util.Date;
 public class Usuario {
     private int idUsuario;
     private String email;
-    private String contrasenia;
+    private String password;
     private String nombre;
     private String apellido;
     private String telefono;
     private Date fechaNacimiento;
 
-    public Usuario(String email, String contrasenia, String nombre, String apellido) {
+    public Usuario(String email, String password, String nombre, String apellido) {
         this.email = email;
-        this.contrasenia = contrasenia;
+        this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public Usuario(int idUsuario, String email, String contrasenia, String nombre, String apellido, String telefono, Date fechaNacimiento) {
+    public Usuario(int idUsuario, String email, String password, String nombre, String apellido, String telefono, Date fechaNacimiento) {
         this.idUsuario = idUsuario;
         this.email = email;
-        this.contrasenia = contrasenia;
+        this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -44,12 +44,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombre() {

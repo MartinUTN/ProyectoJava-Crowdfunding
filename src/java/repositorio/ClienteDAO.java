@@ -9,11 +9,11 @@ import db.Conexion;
 public class ClienteDAO {
 
     public void crear(Cliente cliente) throws SQLException {
-        String sql = "INSERT INTO Usuario(email, contrasenia, nombre, apellido, telefono, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuario(email, password, nombre, apellido, telefono, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, cliente.getEmail());
-            ps.setString(2, cliente.getContrasenia());
+            ps.setString(2, cliente.getPassword());
             ps.setString(3, cliente.getNombre());
             ps.setString(4, cliente.getApellido());
             ps.setString(5, cliente.getTelefono());
@@ -38,7 +38,7 @@ public class ClienteDAO {
                 return new Cliente(
                     rs.getInt("idUsuario"),
                     rs.getString("email"),
-                    rs.getString("contrasenia"),
+                    rs.getString("password"),
                     rs.getString("nombre"),
                     rs.getString("apellido"),
                     rs.getString("telefono"),
@@ -59,7 +59,7 @@ public class ClienteDAO {
                 lista.add(new Cliente(
                     rs.getInt("idUsuario"),
                     rs.getString("email"),
-                    rs.getString("contrasenia"),
+                    rs.getString("password"),
                     rs.getString("nombre"),
                     rs.getString("apellido"),
                     rs.getString("telefono"),
@@ -71,11 +71,11 @@ public class ClienteDAO {
     }
 
     public void actualizar(Cliente cliente) throws SQLException {
-        String sql = "UPDATE Usuario SET email = ?, contrasenia = ?, nombre = ?, apellido = ?, telefono = ?, fechaNacimiento = ? WHERE idUsuario = ?";
+        String sql = "UPDATE Usuario SET email = ?, password = ?, nombre = ?, apellido = ?, telefono = ?, fechaNacimiento = ? WHERE idUsuario = ?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, cliente.getEmail());
-            ps.setString(2, cliente.getContrasenia());
+            ps.setString(2, cliente.getPassword());
             ps.setString(3, cliente.getNombre());
             ps.setString(4, cliente.getApellido());
             ps.setString(5, cliente.getTelefono());

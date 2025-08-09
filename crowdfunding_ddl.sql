@@ -14,7 +14,7 @@ CREATE TABLE Categoria (
 CREATE TABLE Usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) NOT NULL,
-    contrasenia VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     telefono VARCHAR(20),
