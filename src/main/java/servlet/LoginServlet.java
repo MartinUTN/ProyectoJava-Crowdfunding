@@ -9,23 +9,22 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.HttpSession; 
 
 import modelo.Usuario;
 import repositorio.UsuarioDAO;
 
 
-@WebServlet({ "/SIGNIN", "/Signin", "/signin", "/SignIn" })
-public class Signin extends HttpServlet {
+@WebServlet({"/Login", "/LOGIN", "/login", "/LogIn"})
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Signin() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public LoginServlet() {
+		super();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,23 +33,27 @@ public class Signin extends HttpServlet {
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-
+		
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-
+		String contrasenia = request.getParameter("password");
+		
 		Usuario usuario = null;
-
+		
 		try {
-			usuario = usuarioDAO.validarUsuario(email, password);
-
+			usuario = usuarioDAO.validarUsuario(email, contrasenia);
+			
 			if (usuario != null) {
-				request.getSession().setAttribute("usuario", usuario);
-
+				HttpSession session = request.getSession();
+				session.setAttribute("usuario", usuario);
+				
 				List<Usuario> listaUsuarios = usuarioDAO.obtenerTodos();
 				request.setAttribute("usuarios", listaUsuarios);
-
+				
 				request.getRequestDispatcher("home.jsp").forward(request, response);
 			} else {
 				request.setAttribute("error", "Email o contraseña incorrectos.");
@@ -58,9 +61,8 @@ public class Signin extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("error", "Error de conexión a la base de datos: " + e.getMessage());
+			request.setAttribute("error", "Ocurrió un error al intentar iniciar sesión.");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}
-
 }

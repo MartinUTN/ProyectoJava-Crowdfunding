@@ -54,8 +54,6 @@
                 </table>
             </div>
         </c:if>
-
-        <%-- Botón de salir --%>
         <div class="flex justify-center mt-8">
             <a href="logout" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
                 Salir
