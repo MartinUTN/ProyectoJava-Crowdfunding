@@ -37,7 +37,7 @@
         <input id="inputPassword" name="password" class="form-control" placeholder="Password" required type="password">
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+        <p class="mt-5 mb-3 text-muted">Â© 2017-2018</p>
     </form>
 </body>
 </html>
