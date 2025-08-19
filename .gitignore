@@ -1,0 +1,10 @@
+database.properties
+
+nul
+.classpath
+.project
+.settings/
+
+
+/target/
+/bin/
