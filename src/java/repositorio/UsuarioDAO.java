@@ -1,46 +1,30 @@
 package repositorio;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+// 1. Se importa la interfaz desde el nuevo paquete 'interfaces'
+import interfaces.IUsuarioDAO;
 import modelo.Usuario;
 import db.Conexion;
 
-public class UsuarioDAO {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-    public void crear(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO Usuario(email, password, nombre, apellido, telefono, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection con = Conexion.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, usuario.getEmail());
-            ps.setString(2, usuario.getPassword());
-            ps.setString(3, usuario.getNombre());
-            ps.setString(4, usuario.getApellido());
-            ps.setString(5, usuario.getTelefono());
-            if (usuario.getFechaNacimiento() != null) {
-                ps.setDate(6, new java.sql.Date(usuario.getFechaNacimiento().getTime()));
-            } else {
-                ps.setNull(6, Types.DATE);
-            }
-            ps.executeUpdate();
+// 2. La clase sigue implementando la interfaz como antes
+public class UsuarioDAO implements IUsuarioDAO {
 
-            try (ResultSet rs = ps.getGeneratedKeys()) {
-                if (rs.next()) {
-                    usuario.setIdUsuario(rs.getInt(1));
-                }
-            }
-        }
-    }
-
-
-    public Usuario obtenerUno(int idUsuario) throws SQLException {
-        String sql = "SELECT * FROM Usuario WHERE idUsuario = ?";
-        try (Connection con = Conexion.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idUsuario);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Usuario(
+    @Override
+    public List<Usuario> obtenerTodos() throws SQLException {
+        List<Usuario> usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM usuario";
+        try (Connection con = Conexion.getConnection();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                usuarios.add(new Usuario(
                     rs.getInt("idUsuario"),
                     rs.getString("email"),
                     rs.getString("password"),
@@ -48,21 +32,19 @@ public class UsuarioDAO {
                     rs.getString("apellido"),
                     rs.getString("telefono"),
                     rs.getDate("fechaNacimiento")
-                );
+                ));
             }
         }
-        return null;
+        return usuarios;
     }
 
-    public Usuario validarUsuario(String email, String password) throws SQLException {
-        String sql = "SELECT idUsuario, email, password, nombre, apellido, telefono, fechaNacimiento FROM Usuario WHERE email = ? AND password = ?";
+    @Override
+    public Usuario obtenerPorId(int id) throws SQLException {
         Usuario usuario = null;
-
-        try (Connection con = Conexion.obtenerConexion();
+        String sql = "SELECT * FROM usuario WHERE idUsuario = ?";
+        try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, email);
-            ps.setString(2, password);
-            
+            ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     usuario = new Usuario(
@@ -80,52 +62,67 @@ public class UsuarioDAO {
         return usuario;
     }
     
-
-    public List<Usuario> obtenerTodos() throws SQLException {
-        List<Usuario> lista = new ArrayList<>();
-        String sql = "SELECT * FROM Usuario";
-        try (Connection con = Conexion.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                lista.add(new Usuario(
-                    rs.getInt("idUsuario"),
-                    rs.getString("email"),
-                    rs.getString("password"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("telefono"),
-                    rs.getDate("fechaNacimiento")
-                ));
+    @Override
+    public Usuario obtenerPorEmail(String email) throws SQLException {
+        Usuario usuario = null;
+        String sql = "SELECT * FROM usuario WHERE email = ?";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    usuario = new Usuario(
+                        rs.getInt("idUsuario"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("telefono"),
+                        rs.getDate("fechaNacimiento")
+                    );
+                }
             }
         }
-        return lista;
+        return usuario;
     }
 
-    public void actualizar(Usuario usuario) throws SQLException {
-        String sql = "UPDATE Usuario SET email = ?, password = ?, nombre = ?, apellido = ?, telefono = ?, fechaNacimiento = ? WHERE idUsuario = ?";
-        try (Connection con = Conexion.obtenerConexion();
+    @Override
+    public void guardar(Usuario usuario) throws SQLException {
+        String sql = "INSERT INTO usuario (email, password, nombre, apellido, telefono, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, usuario.getEmail());
             ps.setString(2, usuario.getPassword());
             ps.setString(3, usuario.getNombre());
             ps.setString(4, usuario.getApellido());
             ps.setString(5, usuario.getTelefono());
-            if (usuario.getFechaNacimiento() != null) {
-                ps.setDate(6, new java.sql.Date(usuario.getFechaNacimiento().getTime()));
-            } else {
-                ps.setNull(6, Types.DATE);
-            }
+            ps.setDate(6, new java.sql.Date(usuario.getFechaNacimiento().getTime()));
+            ps.executeUpdate();
+        }
+    }
+
+    @Override
+    public void actualizar(Usuario usuario) throws SQLException {
+        String sql = "UPDATE usuario SET email = ?, password = ?, nombre = ?, apellido = ?, telefono = ?, fechaNacimiento = ? WHERE idUsuario = ?";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, usuario.getEmail());
+            ps.setString(2, usuario.getPassword());
+            ps.setString(3, usuario.getNombre());
+            ps.setString(4, usuario.getApellido());
+            ps.setString(5, usuario.getTelefono());
+            ps.setDate(6, new java.sql.Date(usuario.getFechaNacimiento().getTime()));
             ps.setInt(7, usuario.getIdUsuario());
             ps.executeUpdate();
         }
     }
 
-    public void eliminar(int idUsuario) throws SQLException {
-        String sql = "DELETE FROM Usuario WHERE idUsuario = ?";
-        try (Connection con = Conexion.obtenerConexion();
+    @Override
+    public void eliminar(int id) throws SQLException {
+        String sql = "DELETE FROM usuario WHERE idUsuario = ?";
+        try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idUsuario);
+            ps.setInt(1, id);
             ps.executeUpdate();
         }
     }

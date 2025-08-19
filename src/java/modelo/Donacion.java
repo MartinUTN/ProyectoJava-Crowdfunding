@@ -1,30 +1,46 @@
 package modelo;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Donacion {
     private int idDonacion;
-    private double monto;
-    private String comentario;
-    private LocalDate fecha;
-    private int idDonante;
     private int idProyecto;
+    private int idUsuario;
+    private double monto;
+    private Date fecha;
 
-    public Donacion(int idDonacion, double monto, String comentario, LocalDate localdate, int idDonante, int idProyecto) {
+    // Constructor que coincide con el DAO
+    public Donacion(int idDonacion, int idProyecto, int idUsuario, double monto, Date fecha) {
         this.idDonacion = idDonacion;
-        this.monto = monto;
-        this.comentario = comentario;
-        this.fecha = localdate;
-        this.idDonante = idDonante;
         this.idProyecto = idProyecto;
+        this.idUsuario = idUsuario;
+        this.monto = monto;
+        this.fecha = fecha;
     }
 
+    // Getters y Setters
     public int getIdDonacion() {
         return idDonacion;
     }
 
     public void setIdDonacion(int idDonacion) {
         this.idDonacion = idDonacion;
+    }
+
+    public int getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(int idProyecto) {
+        this.idProyecto = idProyecto;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public double getMonto() {
@@ -35,35 +51,11 @@ public class Donacion {
         this.monto = monto;
     }
 
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public int getIdDonante() {
-        return idDonante;
-    }
-
-    public void setIdDonante(int idDonante) {
-        this.idDonante = idDonante;
-    }
-
-    public int getIdProyecto() {
-        return idProyecto;
-    }
-
-    public void setIdProyecto(int idProyecto) {
-        this.idProyecto = idProyecto;
     }
 }

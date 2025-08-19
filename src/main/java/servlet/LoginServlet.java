@@ -1,68 +1,54 @@
 package servlet;
+import interfaces.IUsuarioDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession; 
-
+import jakarta.servlet.http.HttpSession;
 import modelo.Usuario;
 import repositorio.UsuarioDAO;
 
-
-@WebServlet({"/Login", "/LOGIN", "/login", "/LogIn"})
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    private IUsuarioDAO usuarioDAO;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public LoginServlet() {
-		super();
-	}
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        // Se inicializa con la implementación concreta
+        this.usuarioDAO = new UsuarioDAO();
+    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("login.jsp").forward(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		
-		String email = request.getParameter("email");
-		String contrasenia = request.getParameter("password");
-		
-		Usuario usuario = null;
-		
-		try {
-			usuario = usuarioDAO.validarUsuario(email, contrasenia);
-			
-			if (usuario != null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("usuario", usuario);
-				
-				List<Usuario> listaUsuarios = usuarioDAO.obtenerTodos();
-				request.setAttribute("usuarios", listaUsuarios);
-				
-				request.getRequestDispatcher("home.jsp").forward(request, response);
-			} else {
-				request.setAttribute("error", "Email o contraseña incorrectos.");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			request.setAttribute("error", "Ocurrió un error al intentar iniciar sesión.");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
-	}
+        try {
+            // Se utiliza la interfaz para buscar al usuario
+            Usuario usuario = usuarioDAO.obtenerPorEmail(email);
+
+            if (usuario != null && usuario.getPassword().equals(password)) {
+                // Si el usuario y la contraseña son correctos, crear sesión
+                HttpSession session = request.getSession();
+                session.setAttribute("idUsuario", usuario.getIdUsuario());
+                session.setAttribute("email", usuario.getEmail());
+                session.setAttribute("nombre", usuario.getNombre());
+
+                response.sendRedirect("home.jsp");
+            } else {
+                // Si los datos son incorrectos, redirigir al login con error
+                request.setAttribute("error", "Email o contraseña incorrectos.");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendRedirect("login.jsp?error=db");
+        }
+    }
 }

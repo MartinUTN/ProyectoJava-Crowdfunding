@@ -1,43 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="./assets/simbolo-dinero.png">
-    <title>Login</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Crowdfunding</title>
+    
     <!-- Bootstrap core CSS -->
     <link href="style/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="style/login.css" rel="stylesheet">
+    <!-- Estilos personalizados (puedes usar los mismos de register.css o crear un login.css) -->
+    <link href="style/register.css" rel="stylesheet">
 </head>
-
-<body class="text-center">
-    <form class="form-signin" action="Login" method="post">
-      <img class="mb-4" src="./assets/crowdfunding-logo.png" alt="" width="160" height="160">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-        <% 
-            String error = (String) request.getAttribute("error");
-            if (error != null) {
-        %>
-            <div class="alert alert-danger" role="alert">
-                <%= error %>
+<body>
+    <main class="form-container">
+        <form action="LoginServlet" method="post">
+            <div class="form-header">
+                <img src="assets/crowdfunding-logo.png" alt="Logo" width="72" height="57">
+                <h1 class="form-title">Iniciar Sesión</h1>
             </div>
-        <% } %>
 
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus type="email">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com" required>
+                <label for="email">Correo electrónico</label>
+            </div>
 
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input id="inputPassword" name="password" class="form-control" placeholder="Password" required type="password">
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+                <label for="password">Contraseña</label>
+            </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
-    </form>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
+            
+            <p class="login-link">
+                ¿No tienes una cuenta? <a href="register.jsp">Regístrate</a>
+            </p>
+            
+            <!-- Botón para volver a la página de inicio -->
+            <div class="text-center mt-3">
+                <a href="home.jsp" class="btn btn-secondary">Volver</a>
+            </div>
+        </form>
+    </main>
 </body>
 </html>

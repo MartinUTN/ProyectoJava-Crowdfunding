@@ -1,37 +1,47 @@
 package db;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class Conexion {
     private static final Properties PROPS = new Properties();
+    private static String URL;
+    private static String USER;
+    private static String PASSWORD;
+
 
     static {
         try (InputStream input = Conexion.class.getClassLoader().getResourceAsStream("database.properties")) {
             if (input == null) {
-                System.err.println("Error: El archivo database.properties no se encontró en el classpath. Asegúrate de que está en src/main/resources y tu pom.xml está configurado para incluirlo.");
-                throw new IOException("El archivo database.properties no se puede cargar.");
+
+                System.err.println("Error: No se encontró el archivo 'database.properties'. Asegúrate de que esté en 'src/main/resources'.");
+            } else {
+                PROPS.load(input);
+                URL = PROPS.getProperty("db.url");
+                USER = PROPS.getProperty("db.user");
+                PASSWORD = PROPS.getProperty("db.password");
+                
+
+                Class.forName("com.mysql.cj.jdbc.Driver");
             }
-            PROPS.load(input);
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            throw new ExceptionInInitializerError("No se pudo inicializar la conexión con la base de datos debido a un error de I/O.");
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-            throw new ExceptionInInitializerError("No se pudo inicializar la conexión con la base de datos. Asegúrate de que el driver de MySQL está en tu classpath.");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+
+            throw new ExceptionInInitializerError(e);
         }
     }
 
-    private static final String URL = PROPS.getProperty("db.url");
-    private static final String USER = PROPS.getProperty("db.user");
-    private static final String PASSWORD = PROPS.getProperty("db.password");
 
-    public static Connection obtenerConexion() throws SQLException {
+    public static Connection getConnection() throws SQLException {
+
+        if (URL == null || USER == null || PASSWORD == null) {
+            throw new SQLException("No se pudo establecer la conexión: la configuración de la base de datos no está completa.");
+        }
+
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }

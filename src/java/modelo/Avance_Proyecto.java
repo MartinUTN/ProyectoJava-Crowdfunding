@@ -1,20 +1,29 @@
 package modelo;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Avance_Proyecto {
-    private int idProyecto;
     private int idAvance;
+    private int idProyecto;
     private String descripcion;
     private String foto;
-    private LocalDate fecha;
+    private Date fecha;
 
-    public Avance_Proyecto(int idProyecto, int idAvance, String descripcion, String foto, LocalDate localDate) {
-        this.idProyecto = idProyecto;
+    public Avance_Proyecto(int idAvance, int idProyecto, String descripcion, String foto, Date fecha) {
         this.idAvance = idAvance;
+        this.idProyecto = idProyecto;
         this.descripcion = descripcion;
         this.foto = foto;
-        this.fecha = localDate;
+        this.fecha = fecha;
+    }
+
+    // Getters y Setters
+    public int getIdAvance() {
+        return idAvance;
+    }
+
+    public void setIdAvance(int idAvance) {
+        this.idAvance = idAvance;
     }
 
     public int getIdProyecto() {
@@ -23,14 +32,6 @@ public class Avance_Proyecto {
 
     public void setIdProyecto(int idProyecto) {
         this.idProyecto = idProyecto;
-    }
-
-    public int getIdAvance() {
-        return idAvance;
-    }
-
-    public void setIdAvance(int idAvance) {
-        this.idAvance = idAvance;
     }
 
     public String getDescripcion() {
@@ -49,11 +50,11 @@ public class Avance_Proyecto {
         this.foto = foto;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 }

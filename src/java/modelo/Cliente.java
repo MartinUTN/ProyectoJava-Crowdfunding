@@ -1,30 +1,48 @@
 package modelo;
 
-import java.util.Date;
+public class Cliente {
+    private int idCliente;
+    private String nombre;
+    private String apellido;
+    private String email;
 
-public class Cliente extends Usuario {
-    
-    public Cliente(String email, String password, String nombre, String apellido,
-                   String telefono, Date fechaNacimiento) {
-        super(email, password, nombre, apellido);
-        this.setTelefono(telefono);
-        this.setFechaNacimiento(fechaNacimiento);
+    public Cliente(int idCliente, String nombre, String apellido, String email) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
     }
 
-    public Cliente(int idUsuario, String email, String password, String nombre, String apellido,
-                   String telefono, Date fechaNacimiento) {
-        super(idUsuario, email, password, nombre, apellido, telefono, fechaNacimiento);
+    // Getters y Setters
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "idUsuario=" + getIdUsuario() +
-                ", email='" + getEmail() + '\'' +
-                ", nombre='" + getNombre() + '\'' +
-                ", apellido='" + getApellido() + '\'' +
-                ", telefono='" + getTelefono() + '\'' +
-                ", fechaNacimiento=" + getFechaNacimiento() +
-                '}';
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

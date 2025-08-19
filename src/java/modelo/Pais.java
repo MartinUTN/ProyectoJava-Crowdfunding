@@ -9,10 +9,7 @@ public class Pais {
         this.nombre = nombre;
     }
 
-    public Pais(String nombre) {
-        this.nombre = nombre;
-    }
-
+    // Getters y Setters
     public int getIdPais() {
         return idPais;
     }
@@ -27,10 +24,5 @@ public class Pais {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    @Override
-    public String toString() {
-        return "Pais{id=" + idPais + ", nombre='" + nombre + "'}";
     }
 }

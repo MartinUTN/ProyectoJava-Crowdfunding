@@ -1,63 +1,60 @@
 package repositorio;
+import interfaces.ICategoriaDAO;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Categoria;
 import db.Conexion;
+import modelo.Categoria;
 
-public class CategoriaDAO {
+public class CategoriaDAO implements ICategoriaDAO {
 
-    public void crear(Categoria categoria) throws SQLException {
-        String sql = "INSERT INTO Categoria(nombreCategoria) VALUES (?)";
-        try (Connection con = Conexion.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, categoria.getNombreCategoria());
-            ps.executeUpdate();
-        }
-    }
-
-    public Categoria obtenerUno(int idCategoria) throws SQLException {
-        String sql = "SELECT * FROM Categoria WHERE idCategoria = ?";
-        try (Connection con = Conexion.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idCategoria);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Categoria(rs.getInt("idCategoria"), rs.getString("nombreCategoria"));
-            }
-        }
-        return null;
-    }
-
-    public List<Categoria> obtenerTodos() throws SQLException {
-        List<Categoria> lista = new ArrayList<>();
-        String sql = "SELECT * FROM Categoria";
-        try (Connection con = Conexion.obtenerConexion();
+    @Override
+    public List<Categoria> obtenerTodas() throws SQLException {
+        List<Categoria> categorias = new ArrayList<>();
+        String sql = "SELECT * FROM categoria";
+        try (Connection con = Conexion.getConnection();
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
-                lista.add(new Categoria(rs.getInt("idCategoria"), rs.getString("nombreCategoria")));
+                categorias.add(new Categoria(
+                    rs.getInt("idCategoria"),
+                    rs.getString("nombre")
+                ));
             }
         }
-        return lista;
+        return categorias;
     }
 
-    public void actualizar(Categoria categoria) throws SQLException {
-        String sql = "UPDATE Categoria SET nombreCategoria = ? WHERE idCategoria = ?";
-        try (Connection con = Conexion.obtenerConexion();
+    @Override
+    public Categoria obtenerPorId(int id) throws SQLException {
+        Categoria categoria = null;
+        String sql = "SELECT * FROM categoria WHERE idCategoria = ?";
+        try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, categoria.getNombreCategoria());
-            ps.setInt(2, categoria.getIdCategoria());
-            ps.executeUpdate();
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    categoria = new Categoria(
+                        rs.getInt("idCategoria"),
+                        rs.getString("nombre")
+                    );
+                }
+            }
         }
+        return categoria;
     }
 
-    public void eliminar(int idCategoria) throws SQLException {
-        String sql = "DELETE FROM Categoria WHERE idCategoria = ?";
-        try (Connection con = Conexion.obtenerConexion();
+    @Override
+    public void guardar(Categoria categoria) throws SQLException {
+        String sql = "INSERT INTO categoria (nombre) VALUES (?)";
+        try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idCategoria);
+            ps.setString(1, categoria.getNombre());
             ps.executeUpdate();
         }
     }

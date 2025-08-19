@@ -1,16 +1,27 @@
 package modelo;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Cancelacion_Proyecto {
+    private int idCancelacion;
     private int idProyecto;
     private String motivo;
-    private LocalDate fecha;
+    private Date fecha;
 
-    public Cancelacion_Proyecto(int idProyecto, String motivo, LocalDate fecha) {
+    public Cancelacion_Proyecto(int idCancelacion, int idProyecto, String motivo, Date fecha) {
+        this.idCancelacion = idCancelacion;
         this.idProyecto = idProyecto;
         this.motivo = motivo;
         this.fecha = fecha;
+    }
+
+    // Getters y Setters
+    public int getIdCancelacion() {
+        return idCancelacion;
+    }
+
+    public void setIdCancelacion(int idCancelacion) {
+        this.idCancelacion = idCancelacion;
     }
 
     public int getIdProyecto() {
@@ -29,11 +40,11 @@ public class Cancelacion_Proyecto {
         this.motivo = motivo;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 }

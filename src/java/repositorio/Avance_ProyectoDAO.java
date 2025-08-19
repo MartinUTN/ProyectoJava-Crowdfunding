@@ -1,77 +1,49 @@
 package repositorio;
+import interfaces.IAvance_ProyectoDAO;
 
-import java.sql.*;
-import java.sql.Date;
-import java.util.*;
-import modelo.Avance_Proyecto;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import db.Conexion;
+import modelo.Avance_Proyecto;
 
-public class Avance_ProyectoDAO {
-    public void crear(Avance_Proyecto a) throws SQLException {
-        String sql = "INSERT INTO Avance_Proyecto (idProyecto, idAvance, descripcion, foto, fecha) VALUES (?, ?, ?, ?, ?)";
-        try (Connection con = Conexion.obtenerConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, a.getIdProyecto());
-            ps.setInt(2, a.getIdAvance());
-            ps.setString(3, a.getDescripcion());
-            ps.setString(4, a.getFoto());
-            ps.setDate(5, Date.valueOf(a.getFecha()));
-            ps.executeUpdate();
-        }
-    }
+public class Avance_ProyectoDAO implements IAvance_ProyectoDAO {
 
-    public Avance_Proyecto obtenerUno(int idProyecto, int idAvance) throws SQLException {
-        String sql = "SELECT * FROM Avance_Proyecto WHERE idProyecto = ? AND idAvance = ?";
-        try (Connection con = Conexion.obtenerConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+    @Override
+    public List<Avance_Proyecto> obtenerPorProyecto(int idProyecto) throws SQLException {
+        List<Avance_Proyecto> avances = new ArrayList<>();
+        String sql = "SELECT * FROM avance_proyecto WHERE idProyecto = ?";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, idProyecto);
-            ps.setInt(2, idAvance);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Avance_Proyecto(
-                    rs.getInt("idProyecto"),
-                    rs.getInt("idAvance"),
-                    rs.getString("descripcion"),
-                    rs.getString("foto"),
-                    rs.getDate("fecha").toLocalDate()
-                );
-            }
-            return null;
-        }
-    }
-
-    public List<Avance_Proyecto> obtenerTodos() throws SQLException {
-        String sql = "SELECT * FROM Avance_Proyecto";
-        List<Avance_Proyecto> lista = new ArrayList<>();
-        try (Connection con = Conexion.obtenerConexion(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
-            while (rs.next()) {
-                lista.add(new Avance_Proyecto(
-                    rs.getInt("idProyecto"),
-                    rs.getInt("idAvance"),
-                    rs.getString("descripcion"),
-                    rs.getString("foto"),
-                    rs.getDate("fecha").toLocalDate()
-                ));
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    avances.add(new Avance_Proyecto(
+                        rs.getInt("idAvance"),
+                        rs.getInt("idProyecto"),
+                        rs.getString("descripcion"),
+                        rs.getString("foto"),
+                        rs.getDate("fecha")
+                    ));
+                }
             }
         }
-        return lista;
+        return avances;
     }
 
-    public void actualizar(Avance_Proyecto a) throws SQLException {
-        String sql = "UPDATE Avance_Proyecto SET descripcion = ?, foto = ?, fecha = ? WHERE idProyecto = ? AND idAvance = ?";
-        try (Connection con = Conexion.obtenerConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, a.getDescripcion());
-            ps.setString(2, a.getFoto());
-            ps.setDate(3, Date.valueOf(a.getFecha()));
-            ps.setInt(4, a.getIdProyecto());
-            ps.setInt(5, a.getIdAvance());
-            ps.executeUpdate();
-        }
-    }
-
-    public void eliminar(int idProyecto, int idAvance) throws SQLException {
-        String sql = "DELETE FROM Avance_Proyecto WHERE idProyecto = ? AND idAvance = ?";
-        try (Connection con = Conexion.obtenerConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idProyecto);
-            ps.setInt(2, idAvance);
+    @Override
+    public void guardar(Avance_Proyecto avance) throws SQLException {
+        String sql = "INSERT INTO avance_proyecto (idProyecto, descripcion, foto, fecha) VALUES (?, ?, ?, ?)";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, avance.getIdProyecto());
+            ps.setString(2, avance.getDescripcion());
+            ps.setString(3, avance.getFoto());
+            ps.setDate(4, new java.sql.Date(avance.getFecha().getTime()));
             ps.executeUpdate();
         }
     }

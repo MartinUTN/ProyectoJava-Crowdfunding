@@ -1,110 +1,108 @@
 package repositorio;
-
-import java.sql.*;
+import interfaces.IProyectoDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Proyecto;
 import db.Conexion;
+import modelo.Proyecto;
 
-public class ProyectoDAO {
+public class ProyectoDAO implements IProyectoDAO {
 
-    public void crear(Proyecto proyecto) throws SQLException {
-        String sql = "INSERT INTO Proyecto (nombreProyecto, descripcion, montoMeta, fechaIni, fechaFin, foto, estado, montoRecaudado, idPais, idCreador, idCategoria) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection con = Conexion.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, proyecto.getNombreProyecto());
-            ps.setString(2, proyecto.getDescripcion());
-            ps.setBigDecimal(3, proyecto.getMontoMeta());
-            ps.setDate(4, proyecto.getFechaIni());
-            ps.setDate(5, proyecto.getFechaFin());
-            ps.setString(6, proyecto.getFoto());
-            ps.setString(7, proyecto.getEstado());
-            ps.setBigDecimal(8, proyecto.getMontoRecaudado());
-            ps.setInt(9, proyecto.getIdPais());
-            ps.setInt(10, proyecto.getIdCreador());
-            ps.setInt(11, proyecto.getIdCategoria());
-            ps.executeUpdate();
-        }
-    }
-
-    public Proyecto obtenerUno(int idProyecto) throws SQLException {
-        String sql = "SELECT * FROM Proyecto WHERE idProyecto = ?";
-        try (Connection con = Conexion.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idProyecto);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Proyecto(
-                    rs.getInt("idProyecto"),
-                    rs.getString("nombreProyecto"),
-                    rs.getString("descripcion"),
-                    rs.getBigDecimal("montoMeta"),
-                    rs.getDate("fechaIni"),
-                    rs.getDate("fechaFin"),
-                    rs.getString("foto"),
-                    rs.getString("estado"),
-                    rs.getBigDecimal("montoRecaudado"),
-                    rs.getInt("idPais"),
-                    rs.getInt("idCreador"),
-                    rs.getInt("idCategoria")
-                );
-            }
-        }
-        return null;
-    }
-
+    @Override
     public List<Proyecto> obtenerTodos() throws SQLException {
-        List<Proyecto> lista = new ArrayList<>();
-        String sql = "SELECT * FROM Proyecto";
-        try (Connection con = Conexion.obtenerConexion();
+        List<Proyecto> proyectos = new ArrayList<>();
+        String sql = "SELECT * FROM proyecto";
+        try (Connection con = Conexion.getConnection();
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
-                lista.add(new Proyecto(
+                proyectos.add(new Proyecto(
                     rs.getInt("idProyecto"),
-                    rs.getString("nombreProyecto"),
+                    rs.getInt("idUsuario"),
+                    rs.getString("titulo"),
                     rs.getString("descripcion"),
-                    rs.getBigDecimal("montoMeta"),
-                    rs.getDate("fechaIni"),
+                    rs.getDouble("montoMeta"),
+                    rs.getDouble("montoActual"),
+                    rs.getDate("fechaInicio"),
                     rs.getDate("fechaFin"),
-                    rs.getString("foto"),
-                    rs.getString("estado"),
-                    rs.getBigDecimal("montoRecaudado"),
-                    rs.getInt("idPais"),
-                    rs.getInt("idCreador"),
                     rs.getInt("idCategoria")
                 ));
             }
         }
-        return lista;
+        return proyectos;
     }
 
-    public void actualizar(Proyecto proyecto) throws SQLException {
-        String sql = "UPDATE Proyecto SET nombreProyecto = ?, descripcion = ?, montoMeta = ?, fechaIni = ?, fechaFin = ?, foto = ?, estado = ?, montoRecaudado = ?, idPais = ?, idCreador = ?, idCategoria = ? WHERE idProyecto = ?";
-        try (Connection con = Conexion.obtenerConexion();
+    @Override
+    public Proyecto obtenerPorId(int id) throws SQLException {
+        Proyecto proyecto = null;
+        String sql = "SELECT * FROM proyecto WHERE idProyecto = ?";
+        try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, proyecto.getNombreProyecto());
-            ps.setString(2, proyecto.getDescripcion());
-            ps.setBigDecimal(3, proyecto.getMontoMeta());
-            ps.setDate(4, proyecto.getFechaIni());
-            ps.setDate(5, proyecto.getFechaFin());
-            ps.setString(6, proyecto.getFoto());
-            ps.setString(7, proyecto.getEstado());
-            ps.setBigDecimal(8, proyecto.getMontoRecaudado());
-            ps.setInt(9, proyecto.getIdPais());
-            ps.setInt(10, proyecto.getIdCreador());
-            ps.setInt(11, proyecto.getIdCategoria());
-            ps.setInt(12, proyecto.getIdProyecto());
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    proyecto = new Proyecto(
+                        rs.getInt("idProyecto"),
+                        rs.getInt("idUsuario"),
+                        rs.getString("titulo"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("montoMeta"),
+                        rs.getDouble("montoActual"),
+                        rs.getDate("fechaInicio"),
+                        rs.getDate("fechaFin"),
+                        rs.getInt("idCategoria")
+                    );
+                }
+            }
+        }
+        return proyecto;
+    }
+
+    @Override
+    public void guardar(Proyecto proyecto) throws SQLException {
+        String sql = "INSERT INTO proyecto (idUsuario, titulo, descripcion, montoMeta, montoActual, fechaInicio, fechaFin, idCategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, proyecto.getIdUsuario());
+            ps.setString(2, proyecto.getTitulo());
+            ps.setString(3, proyecto.getDescripcion());
+            ps.setDouble(4, proyecto.getMontoMeta());
+            ps.setDouble(5, proyecto.getMontoActual());
+            ps.setDate(6, new java.sql.Date(proyecto.getFechaInicio().getTime()));
+            ps.setDate(7, new java.sql.Date(proyecto.getFechaFin().getTime()));
+            ps.setInt(8, proyecto.getIdCategoria());
             ps.executeUpdate();
         }
     }
 
-    public void eliminar(int idProyecto) throws SQLException {
-        String sql = "DELETE FROM Proyecto WHERE idProyecto = ?";
-        try (Connection con = Conexion.obtenerConexion();
+    @Override
+    public void actualizar(Proyecto proyecto) throws SQLException {
+        String sql = "UPDATE proyecto SET idUsuario = ?, titulo = ?, descripcion = ?, montoMeta = ?, montoActual = ?, fechaInicio = ?, fechaFin = ?, idCategoria = ? WHERE idProyecto = ?";
+        try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idProyecto);
+            ps.setInt(1, proyecto.getIdUsuario());
+            ps.setString(2, proyecto.getTitulo());
+            ps.setString(3, proyecto.getDescripcion());
+            ps.setDouble(4, proyecto.getMontoMeta());
+            ps.setDouble(5, proyecto.getMontoActual());
+            ps.setDate(6, new java.sql.Date(proyecto.getFechaInicio().getTime()));
+            ps.setDate(7, new java.sql.Date(proyecto.getFechaFin().getTime()));
+            ps.setInt(8, proyecto.getIdCategoria());
+            ps.setInt(9, proyecto.getIdProyecto());
+            ps.executeUpdate();
+        }
+    }
+
+    @Override
+    public void eliminar(int id) throws SQLException {
+        String sql = "DELETE FROM proyecto WHERE idProyecto = ?";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
             ps.executeUpdate();
         }
     }

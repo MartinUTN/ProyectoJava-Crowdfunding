@@ -1,64 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Crowdfunding</title>
-    <link rel="icon" href="./assets/simbolo-dinero.png">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="style/home.css" rel="stylesheet">
+    <title>Crowdfunding</title>
+    <link href="style/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/home.css">
 </head>
 <body>
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-center mb-4">Â¡Bienvenido, <c:out value="${usuario.nombre}"/>!</h1>
-        <h2 class="text-2xl font-bold text-center mb-8">Lista de Usuarios</h2>
-
-        <c:if test="${not empty error}">
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <span class="block sm:inline">${error}</span>
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a href="home.jsp" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <img src="assets/crowdfunding-logo.png" class="bi me-2" width="40" height="32">
+                    <span class="fs-4">Crowdfunding</span>
+                </a>
             </div>
-        </c:if>
-
-        <c:if test="${empty usuarios and empty error}">
-            <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <span class="block sm:inline">No hay usuarios para mostrar.</span>
+    
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="home.jsp" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2">Proyectos</a></li>
+                <li><a href="#" class="nav-link px-2">Acerca de</a></li>
+            </ul>
+    
+            <div class="col-md-3 header-action-buttons">
+                <a href="login.jsp" class="btn btn-outline-primary">Iniciar Sesión</a>
+                <a href="register.jsp" class="btn btn-primary">Registrarse</a>
             </div>
-        </c:if>
+        </header>
 
-        <c:if test="${not empty usuarios}">
-            <div class="overflow-x-auto">
-                <table class="min-w-full bg-white rounded-lg shadow-md">
-                    <thead class="bg-gray-200">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TelÃ©fono</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <c:forEach var="u" items="${usuarios}">
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${u.idUsuario}"/></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${u.email}"/></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${u.nombre}"/></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${u.apellido}"/></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><c:out value="${u.telefono}"/></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+        <main>
+            <div class="px-4 py-5 my-5 text-center">
+                <img class="d-block mx-auto mb-4" src="assets/simbolo-dinero.png" alt="" width="72" height="57">
+                <h1 class="display-5 fw-bold text-body-emphasis">Financia Tus Sueños</h1>
+                <div class="col-lg-6 mx-auto">
+                  <p class="lead mb-4">Bienvenido a nuestra plataforma de crowdfunding. Aquí puedes encontrar proyectos innovadores para apoyar o puedes crear tu propio proyecto y buscar el financiamiento que necesitas para hacerlo realidad.</p>
+                  <div class="main-action-buttons">
+                    <button type="button" class="btn btn-primary btn-lg px-4">Explorar Proyectos</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Crear Proyecto</button>
+                  </div>
+                </div>
             </div>
-        </c:if>
-        <div class="flex justify-center mt-8">
-            <a href="logout" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
-                Salir
-            </a>
-        </div>
+        </main>
+
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Proyectos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">© 2024 Crowdfunding, Inc</p>
+        </footer>
     </div>
 </body>
 </html>

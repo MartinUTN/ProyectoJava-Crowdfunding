@@ -1,53 +1,32 @@
 package modelo;
 
-import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 public class Proyecto {
     private int idProyecto;
-    private String nombreProyecto;
+    private int idUsuario;
+    private String titulo;
     private String descripcion;
-    private BigDecimal montoMeta;
-    private Date fechaIni;
+    private double montoMeta;
+    private double montoActual;
+    private Date fechaInicio;
     private Date fechaFin;
-    private String foto;
-    private String estado;
-    private BigDecimal montoRecaudado;
-    private int idPais;
-    private int idCreador;
     private int idCategoria;
 
-    public Proyecto(String nombreProyecto, String descripcion, BigDecimal montoMeta, Date fechaIni, Date fechaFin,
-                    String foto, String estado, BigDecimal montoRecaudado, int idPais, int idCreador, int idCategoria) {
-        this.nombreProyecto = nombreProyecto;
-        this.descripcion = descripcion;
-        this.montoMeta = montoMeta;
-        this.fechaIni = fechaIni;
-        this.fechaFin = fechaFin;
-        this.foto = foto;
-        this.estado = estado;
-        this.montoRecaudado = montoRecaudado;
-        this.idPais = idPais;
-        this.idCreador = idCreador;
-        this.idCategoria = idCategoria;
-    }
-
-    public Proyecto(int idProyecto, String nombreProyecto, String descripcion, BigDecimal montoMeta, Date fechaIni, Date fechaFin,
-                    String foto, String estado, BigDecimal montoRecaudado, int idPais, int idCreador, int idCategoria) {
+    // Constructor que coincide con el DAO
+    public Proyecto(int idProyecto, int idUsuario, String titulo, String descripcion, double montoMeta, double montoActual, Date fechaInicio, Date fechaFin, int idCategoria) {
         this.idProyecto = idProyecto;
-        this.nombreProyecto = nombreProyecto;
+        this.idUsuario = idUsuario;
+        this.titulo = titulo;
         this.descripcion = descripcion;
         this.montoMeta = montoMeta;
-        this.fechaIni = fechaIni;
+        this.montoActual = montoActual;
+        this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.foto = foto;
-        this.estado = estado;
-        this.montoRecaudado = montoRecaudado;
-        this.idPais = idPais;
-        this.idCreador = idCreador;
         this.idCategoria = idCategoria;
     }
 
+    // Getters y Setters
     public int getIdProyecto() {
         return idProyecto;
     }
@@ -56,12 +35,20 @@ public class Proyecto {
         this.idProyecto = idProyecto;
     }
 
-    public String getNombreProyecto() {
-        return nombreProyecto;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setNombreProyecto(String nombreProyecto) {
-        this.nombreProyecto = nombreProyecto;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescripcion() {
@@ -72,20 +59,28 @@ public class Proyecto {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getMontoMeta() {
+    public double getMontoMeta() {
         return montoMeta;
     }
 
-    public void setMontoMeta(BigDecimal montoMeta) {
+    public void setMontoMeta(double montoMeta) {
         this.montoMeta = montoMeta;
     }
 
-    public Date getFechaIni() {
-        return fechaIni;
+    public double getMontoActual() {
+        return montoActual;
     }
 
-    public void setFechaIni(Date fechaIni) {
-        this.fechaIni = fechaIni;
+    public void setMontoActual(double montoActual) {
+        this.montoActual = montoActual;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public Date getFechaFin() {
@@ -96,46 +91,6 @@ public class Proyecto {
         this.fechaFin = fechaFin;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public BigDecimal getMontoRecaudado() {
-        return montoRecaudado;
-    }
-
-    public void setMontoRecaudado(BigDecimal montoRecaudado) {
-        this.montoRecaudado = montoRecaudado;
-    }
-
-    public int getIdPais() {
-        return idPais;
-    }
-
-    public void setIdPais(int idPais) {
-        this.idPais = idPais;
-    }
-
-    public int getIdCreador() {
-        return idCreador;
-    }
-
-    public void setIdCreador(int idCreador) {
-        this.idCreador = idCreador;
-    }
-
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -143,5 +98,4 @@ public class Proyecto {
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
     }
-
 }

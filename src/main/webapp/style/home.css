@@ -36,3 +36,16 @@
 .alert-danger, .alert-info {
     margin-top: 20px;
 }
+
+.main-action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.header-action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}

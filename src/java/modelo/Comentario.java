@@ -1,55 +1,30 @@
 package modelo;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Comentario {
     private int idComentario;
-    private String titulo;
-    private LocalDate fecha;
-    private String descripcion;
     private int idProyecto;
     private int idUsuario;
+    private String texto;
+    private Date fecha;
 
-    public Comentario(int idComentario, String titulo, LocalDate localDate, String descripcion, int idProyecto, int idUsuario) {
+    // Constructor que coincide con el DAO
+    public Comentario(int idComentario, int idProyecto, int idUsuario, String texto, Date fecha) {
         this.idComentario = idComentario;
-        this.titulo = titulo;
-        this.fecha = localDate;
-        this.descripcion = descripcion;
         this.idProyecto = idProyecto;
         this.idUsuario = idUsuario;
+        this.texto = texto;
+        this.fecha = fecha;
     }
 
-
+    // Getters y Setters
     public int getIdComentario() {
         return idComentario;
     }
 
     public void setIdComentario(int idComentario) {
         this.idComentario = idComentario;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public int getIdProyecto() {
@@ -66,5 +41,21 @@ public class Comentario {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

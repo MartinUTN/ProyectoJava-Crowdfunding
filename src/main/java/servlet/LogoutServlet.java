@@ -6,30 +6,26 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession; 
+import jakarta.servlet.http.HttpSession;
 
-
-@WebServlet({"/Logout", "/LOGOUT", "/logout", "/logOut"})
+@WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LogoutServlet() {
-        super();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false); // No crear una nueva sesión si no existe
+
+        if (session != null) {
+            session.invalidate(); // Invalida la sesión actual
+        }
+
+        // Redirigir a la página de inicio
+        response.sendRedirect("home.jsp");
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		
-		if (session != null) {
-			session.invalidate();
-		}
-		
-		response.sendRedirect("login.jsp");
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

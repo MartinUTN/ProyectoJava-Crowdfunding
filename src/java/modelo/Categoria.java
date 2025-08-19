@@ -2,17 +2,15 @@ package modelo;
 
 public class Categoria {
     private int idCategoria;
-    private String nombreCategoria;
+    private String nombre;
 
-    public Categoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
-    }
-
-    public Categoria(int idCategoria, String nombreCategoria) {
+    // Constructor que coincide con el DAO
+    public Categoria(int idCategoria, String nombre) {
         this.idCategoria = idCategoria;
-        this.nombreCategoria = nombreCategoria;
+        this.nombre = nombre;
     }
 
+    // Getters y Setters
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -21,19 +19,11 @@ public class Categoria {
         this.idCategoria = idCategoria;
     }
 
-    public String getNombreCategoria() {
-        return nombreCategoria;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCategoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
-    }
-
-    @Override
-    public String toString() {
-        return "Categoria{" +
-                "idCategoria=" + idCategoria +
-                ", nombreCategoria='" + nombreCategoria + '\'' +
-                '}';
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

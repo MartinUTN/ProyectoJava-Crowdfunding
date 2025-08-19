@@ -1,0 +1,53 @@
+/* Estilos para la página de registro (register.jsp) */
+
+/* Estilo general del cuerpo de la página */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Contenedor principal del formulario */
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el logo y el título del formulario */
+.form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-header img {
+  margin-bottom: 1rem;
+}
+
+.form-header .form-title {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+/* Espaciado para los campos del formulario */
+.form-floating {
+  margin-bottom: 1rem;
+}
+
+/* Botón de registro a ancho completo */
+.w-100 {
+  width: 100%;
+}
+
+/* Texto de "Ya tienes cuenta?" */
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}

@@ -1,81 +1,49 @@
 package repositorio;
+import interfaces.IComentarioDAO;
 
-import java.sql.*;
-import java.util.*;
-import java.sql.Date;
-import modelo.Comentario;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import db.Conexion;
+import modelo.Comentario;
 
-public class ComentarioDAO {
+public class ComentarioDAO implements IComentarioDAO {
 
-    public void crear(Comentario c) throws SQLException {
-        String sql = "INSERT INTO Comentario (titulo, fecha, descripcion, idProyecto, idUsuario) VALUES (?, ?, ?, ?, ?)";
-        try (Connection con = Conexion.obtenerConexion(); 
-        PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, c.getTitulo());
-            ps.setDate(2, Date.valueOf(c.getFecha()));
-            ps.setString(3, c.getDescripcion());
-            ps.setInt(4, c.getIdProyecto());
-            ps.setInt(5, c.getIdUsuario());
-            ps.executeUpdate();
-        }
-    }
-
-    public Comentario obtenerUno(int idComentario) throws SQLException {
-        String sql = "SELECT * FROM Comentario WHERE idComentario = ?";
-        try (Connection con = Conexion.obtenerConexion(); 
-        PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idComentario);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Comentario(
-                    rs.getInt("idComentario"),
-                    rs.getString("titulo"),
-                    rs.getDate("fecha").toLocalDate(),
-                    rs.getString("descripcion"),
-                    rs.getInt("idProyecto"),
-                    rs.getInt("idUsuario")
-                );
-            }
-            return null;
-        }
-    }
-
-    public List<Comentario> obtenerTodos() throws SQLException {
-        String sql = "SELECT * FROM Comentario";
-        List<Comentario> lista = new ArrayList<>();
-        try (Connection con = Conexion.obtenerConexion(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
-            while (rs.next()) {
-                lista.add(new Comentario(
-                    rs.getInt("idComentario"),
-                    rs.getString("titulo"),
-                    rs.getDate("fecha").toLocalDate(),
-                    rs.getString("descripcion"),
-                    rs.getInt("idProyecto"),
-                    rs.getInt("idUsuario")
-                ));
+    @Override
+    public List<Comentario> obtenerTodosPorProyecto(int idProyecto) throws SQLException {
+        List<Comentario> comentarios = new ArrayList<>();
+        String sql = "SELECT * FROM comentario WHERE idProyecto = ?";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idProyecto);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    comentarios.add(new Comentario(
+                        rs.getInt("idComentario"),
+                        rs.getInt("idProyecto"),
+                        rs.getInt("idUsuario"),
+                        rs.getString("texto"),
+                        rs.getDate("fecha")
+                    ));
+                }
             }
         }
-        return lista;
+        return comentarios;
     }
 
-    public void actualizar(Comentario c) throws SQLException {
-        String sql = "UPDATE Comentario SET titulo = ?, fecha = ?, descripcion = ?, idProyecto = ?, idUsuario = ? WHERE idComentario = ?";
-        try (Connection con = Conexion.obtenerConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, c.getTitulo());
-            ps.setDate(2, Date.valueOf(c.getFecha()));
-            ps.setString(3, c.getDescripcion());
-            ps.setInt(4, c.getIdProyecto());
-            ps.setInt(5, c.getIdUsuario());
-            ps.setInt(6, c.getIdComentario());
-            ps.executeUpdate();
-        }
-    }
-
-    public void eliminar(int idComentario) throws SQLException {
-        String sql = "DELETE FROM Comentario WHERE idComentario = ?";
-        try (Connection con = Conexion.obtenerConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idComentario);
+    @Override
+    public void guardar(Comentario comentario) throws SQLException {
+        String sql = "INSERT INTO comentario (idProyecto, idUsuario, texto, fecha) VALUES (?, ?, ?, ?)";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, comentario.getIdProyecto());
+            ps.setInt(2, comentario.getIdUsuario());
+            ps.setString(3, comentario.getTexto());
+            ps.setDate(4, new java.sql.Date(comentario.getFecha().getTime()));
             ps.executeUpdate();
         }
     }
