@@ -1,44 +1,79 @@
-html,
+/* General body and container styles for login and register */
 body {
-  height: 100%;
+    background-color: #f5f5f5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
 }
 
-body {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
+.form-container {
+    width: 100%;
+    max-width: 550px; /* Increased max-width for a wider form */
+    padding: 2.5rem;
+    margin: 1rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
 }
 
+.form-floating .form-control {
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease-in-out;
+    padding: 1rem 0.75rem; /* Increased padding */
+    min-height: 4.5rem; /* Set a minimum height */
+    font-size: 1.1rem; /* Increased font size */
+}
+
+.form-floating label {
+    color: #6c757d;
+}
+
+.form-floating .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: background-color 0.2s ease-in-out;
+    padding: 0.75rem 1.5rem; /* Increased button padding */
+    font-size: 1.25rem; /* Increased button font size */
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: #5c636a;
+    border-color: #565e64;
+}
+
+.text-muted a {
+    color: #0d6efd;
+    font-weight: bold;
+}
+
+.text-muted a:hover {
+    text-decoration: underline !important;
+}
+
+/* Specific styles for login */
 .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+
+/* Specific styles for register */
+.form-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
