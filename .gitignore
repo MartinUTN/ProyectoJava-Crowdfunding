@@ -1,6 +1,4 @@
-database.properties
 
-nul
 .classpath
 .project
 .settings/
@@ -8,3 +6,12 @@ nul
 
 /target/
 /bin/
+
+database.properties
+
+*.class
+*.jar
+*.war
+*.log
+*.bak
+hs_err_pid*.log
