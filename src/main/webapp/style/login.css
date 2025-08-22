@@ -6,10 +6,10 @@ body {
 }
 
 .form-container {
-    width: 100%;
-    max-width: 550px; /* Increased max-width for a wider form */
+    width: 80%;
+    max-width: 550px; 
     padding: 2.5rem;
-    margin: 1rem;
+    margin: 0.3rem;
     background-color: #ffffff;
     border-radius: 1rem;
     box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
@@ -19,9 +19,9 @@ body {
     border-radius: 0.5rem;
     border: 1px solid #ced4da;
     transition: all 0.2s ease-in-out;
-    padding: 1rem 0.75rem; /* Increased padding */
-    min-height: 4.5rem; /* Set a minimum height */
-    font-size: 1.1rem; /* Increased font size */
+    padding: 1rem 0.75rem; 
+    min-height: 2.8rem; 
+    font-size: 1.1rem; 
 }
 
 .form-floating label {

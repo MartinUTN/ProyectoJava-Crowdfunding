@@ -1,0 +1,14 @@
+@charset "UTF-8";
+footer {
+    background-color: #f8f9fa;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+footer .nav-link, footer .text-muted {
+    color: #6c757d !important;
+}
+
+footer .nav-link:hover {
+    color: #007bff !important;
+}
