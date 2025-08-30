@@ -7,7 +7,6 @@ public class Cancelacion_Proyecto {
     private String motivo;
     private LocalDate fecha;
 
-    // Getters y Setters
     public int getIdProyecto() {
         return idProyecto;
     }

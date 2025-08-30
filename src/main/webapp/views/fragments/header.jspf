@@ -26,6 +26,9 @@
                     } else if (usuario.getTelefono() == null) {
                 %>
                         <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/proyectosDestacados" class="nav-link">Proyectos Destacados</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="${pageContext.request.contextPath}/admin/proyectos" class="nav-link">Proyectos Pendientes</a>
                         </li>
                         <li class="nav-item">

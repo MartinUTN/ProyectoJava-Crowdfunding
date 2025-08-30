@@ -1,10 +1,22 @@
-INSERT INTO Pais (nombre) VALUES
+INSERT INTO Pais (nombrePais) VALUES
 ('Argentina'), ('Bolivia'), ('Brasil'), ('Chile'), ('Colombia'),
 ('Costa Rica'), ('Cuba'), ('Ecuador'), ('El Salvador'), ('Guatemala'),
 ('Honduras'), ('México'), ('Nicaragua'), ('Panamá'), ('Paraguay'),
 ('Perú'), ('República Dominicana'), ('Uruguay'), ('Venezuela'),
 ('Alemania'), ('España'), ('Francia'), ('Italia'), ('Portugal'),
-('Reino Unido'), ('Países Bajos'), ('Bélgica'), ('Suiza'), ('Suecia');
+('Reino Unido'), ('Países Bajos'), ('Bélgica'), ('Suiza'), ('Suecia'),
+('Noruega'), ('Dinamarca'), ('Finlandia'), ('Austria'), ('Grecia'),
+('Polonia'), ('Ucrania'), ('Rusia'), ('Irlanda'), ('Turquía'),
+('Hungría'), ('República Checa'), ('Rumanía'), ('Bulgaria'), ('Croacia'),
+('Estados Unidos'), ('Canadá'), ('Puerto Rico'), ('Jamaica'),
+('Trinidad y Tobago'), ('Bahamas'), ('Barbados'), ('Haití'),
+('China'), ('Japón'), ('Corea del Sur'), ('India'), ('Indonesia'),
+('Tailandia'), ('Vietnam'), ('Malasia'), ('Filipinas'), ('Singapur'),
+('Israel'), ('Arabia Saudita'), ('Emiratos Árabes Unidos'), ('Qatar'),
+('Pakistán'), ('Bangladés'), ('Sri Lanka'), ('Nepal'), ('Kazajistán'),
+('Egipto'), ('Sudáfrica'), ('Nigeria'), ('Kenia'), ('Marruecos'),
+('Argelia'), ('Túnez'), ('Ghana'), ('Etiopía'), ('Tanzania'),
+('Australia'), ('Nueva Zelanda'), ('Fiyi'), ('Papúa Nueva Guinea');
 
 INSERT INTO Categoria (nombreCategoria) VALUES
 ('Tecnología'), ('Arte'), ('Música'), ('Cine'), ('Diseño'),

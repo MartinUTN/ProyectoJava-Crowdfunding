@@ -2,9 +2,8 @@ package modelo;
 
 public class Pais {
     private int idPais;
-    private String nombre;
+    private String nombrePais;
 
-    // Getters y Setters
     public int getIdPais() {
         return idPais;
     }
@@ -13,11 +12,13 @@ public class Pais {
         this.idPais = idPais;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+   public String getNombrePais() { 
+	   return nombrePais; 
+   }
+   public void setNombrePais(String nombrePais) { 
+	   this.nombrePais = nombrePais; 
+   }
+    
+
 }

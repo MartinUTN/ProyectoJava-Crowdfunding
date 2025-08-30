@@ -4,7 +4,6 @@ public class Categoria {
     private int idCategoria;
     private String nombreCategoria;
 
-    // Getters y Setters
     public int getIdCategoria() {
         return idCategoria;
     }

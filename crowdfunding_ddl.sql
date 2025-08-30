@@ -3,7 +3,7 @@ USE crowdfunding;
 
 CREATE TABLE Pais (
     idPais INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100) NOT NULL
+    nombrePais VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Categoria (

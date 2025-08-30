@@ -15,10 +15,10 @@ public class PaisDAO implements IPaisDAO {
 
     @Override
     public void insertar(Pais pais) {
-        String sql = "INSERT INTO pais (nombre) VALUES (?)";
+        String sql = "INSERT INTO pais (nombrePais) VALUES (?)";
         try (Connection con = Conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, pais.getNombre());
+            ps.setString(1, pais.getNombrePais());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,7 +35,7 @@ public class PaisDAO implements IPaisDAO {
             while (rs.next()) {
                 Pais pais = new Pais();
                 pais.setIdPais(rs.getInt("idPais"));
-                pais.setNombre(rs.getString("nombre"));
+                pais.setNombrePais(rs.getString("nombrePais"));
                 paises.add(pais);
             }
         } catch (SQLException e) {
@@ -55,7 +55,7 @@ public class PaisDAO implements IPaisDAO {
                 if (rs.next()) {
                     pais = new Pais();
                     pais.setIdPais(rs.getInt("idPais"));
-                    pais.setNombre(rs.getString("nombre"));
+                    pais.setNombrePais(rs.getString("nombrePais"));
                 }
             }
         } catch (SQLException e) {
@@ -66,10 +66,10 @@ public class PaisDAO implements IPaisDAO {
 
     @Override
     public void actualizar(Pais pais) {
-        String sql = "UPDATE pais SET nombre = ? WHERE idPais = ?";
+        String sql = "UPDATE pais SET nombrePais = ? WHERE idPais = ?";
         try (Connection con = Conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, pais.getNombre());
+            ps.setString(1, pais.getNombrePais());
             ps.setInt(2, pais.getIdPais());
             ps.executeUpdate();
         } catch (SQLException e) {
