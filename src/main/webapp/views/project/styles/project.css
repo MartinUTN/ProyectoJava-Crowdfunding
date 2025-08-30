@@ -1,0 +1,109 @@
+.projects-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.no-projects {
+    font-size: 1.2rem;
+    color: gray;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.project-card h2 {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    color: var(--dark-green);
+}
+
+.project-card p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card-actions form, 
+.card-actions a {
+    flex: 1;
+}
+
+.btn-approve, .btn-reject, .btn-view {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.3s ease;
+}
+
+.btn-approve {
+    background-color: #27ae60;
+}
+.btn-approve:hover {
+    background-color: #1e8449;
+}
+
+.btn-reject {
+    background-color: #e74c3c;
+}
+.btn-reject:hover {
+    background-color: #c0392b;
+}
+
+.btn-view {
+    background-color: #3498db;
+}
+.btn-view:hover {
+    background-color: #21618c;
+}
+

@@ -8,110 +8,57 @@ public class Proyecto {
     private String nombreProyecto;
     private String descripcion;
     private BigDecimal montoMeta;
+    private BigDecimal montoRecaudado;
     private LocalDate fechaIni;
     private LocalDate fechaFin;
-    private String foto;
-    private String estado;
-    private BigDecimal montoRecaudado;
-    private int idPais;
     private int idCreador;
-    private int idCategoria;
+    private String estado;
+    private String foto;
 
-    // Getters y Setters
+    private Categoria categoria;
+    private Pais pais;
+    private Cancelacion_Proyecto cancelacion;
 
-    public int getIdProyecto() {
-        return idProyecto;
+    public Cancelacion_Proyecto getCancelacion() {
+        return cancelacion;
     }
 
-    public void setIdProyecto(int idProyecto) {
-        this.idProyecto = idProyecto;
+    public void setCancelacion(Cancelacion_Proyecto cancelacion) {
+        this.cancelacion = cancelacion;
     }
+    public int getIdProyecto() { return idProyecto; }
+    public void setIdProyecto(int idProyecto) { this.idProyecto = idProyecto; }
 
-    public String getNombreProyecto() {
-        return nombreProyecto;
-    }
+    public String getNombreProyecto() { return nombreProyecto; }
+    public void setNombreProyecto(String nombreProyecto) { this.nombreProyecto = nombreProyecto; }
 
-    public void setNombreProyecto(String nombreProyecto) {
-        this.nombreProyecto = nombreProyecto;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public BigDecimal getMontoMeta() { return montoMeta; }
+    public void setMontoMeta(BigDecimal montoMeta) { this.montoMeta = montoMeta; }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    public BigDecimal getMontoRecaudado() { return montoRecaudado; }
+    public void setMontoRecaudado(BigDecimal montoRecaudado) { this.montoRecaudado = montoRecaudado; }
 
-    public BigDecimal getMontoMeta() {
-        return montoMeta;
-    }
+    public LocalDate getFechaIni() { return fechaIni; }
+    public void setFechaIni(LocalDate fechaIni) { this.fechaIni = fechaIni; }
 
-    public void setMontoMeta(BigDecimal montoMeta) {
-        this.montoMeta = montoMeta;
-    }
+    public LocalDate getFechaFin() { return fechaFin; }
+    public void setFechaFin(LocalDate fechaFin) { this.fechaFin = fechaFin; }
 
-    public LocalDate getFechaIni() {
-        return fechaIni;
-    }
+    public int getIdCreador() { return idCreador; }
+    public void setIdCreador(int idCreador) { this.idCreador = idCreador; }
 
-    public void setFechaIni(LocalDate fechaIni) {
-        this.fechaIni = fechaIni;
-    }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 
-    public LocalDate getFechaFin() {
-        return fechaFin;
-    }
+    public String getFoto() { return foto; }
+    public void setFoto(String foto) { this.foto = foto; }
 
-    public void setFechaFin(LocalDate fechaFin) {
-        this.fechaFin = fechaFin;
-    }
+    public Categoria getCategoria() { return categoria; }
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public BigDecimal getMontoRecaudado() {
-        return montoRecaudado;
-    }
-
-    public void setMontoRecaudado(BigDecimal montoRecaudado) {
-        this.montoRecaudado = montoRecaudado;
-    }
-
-    public int getIdPais() {
-        return idPais;
-    }
-
-    public void setIdPais(int idPais) {
-        this.idPais = idPais;
-    }
-
-    public int getIdCreador() {
-        return idCreador;
-    }
-
-    public void setIdCreador(int idCreador) {
-        this.idCreador = idCreador;
-    }
-
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
+    public Pais getPais() { return pais; }
+    public void setPais(Pais pais) { this.pais = pais; }
 }

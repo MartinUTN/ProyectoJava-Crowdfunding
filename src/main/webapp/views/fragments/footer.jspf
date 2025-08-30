@@ -10,7 +10,7 @@
         <div class="footer-column footer-links">
             <h3>Enlaces Rápidos</h3>
             <ul>
-                <li><a href="#">Proyectos</a></li>
+                <li><a href="${pageContext.request.contextPath}/activeProjects">Proyectos</a></li>
                 <li><a href="${pageContext.request.contextPath}/categories">Categorias</a></li>
                 <li><a href="${pageContext.request.contextPath}/how-it-works">Cómo funciona</a></li>
                 <li><a href="${pageContext.request.contextPath}/about">Sobre Nosotros</a></li>

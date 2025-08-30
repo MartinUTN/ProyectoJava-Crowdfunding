@@ -26,6 +26,7 @@ public class Cancelacion_ProyectoDAO implements ICancelacion_ProyectoDAO {
             e.printStackTrace();
         }
     }
+    
 
     @Override
     public List<Cancelacion_Proyecto> obtenerTodos() {

@@ -9,27 +9,27 @@
     
     <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
 
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/home.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/messages.css">
-	
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/messages.css">
 </head>
 <body>
 
-	<jsp:include page="/views/fragments/header.jspf" />
-	<%@ include file="/views/fragments/messages.jspf" %>
+    <jsp:include page="/views/fragments/header.jspf" />
+    <%@ include file="/views/fragments/messages.jspf" %>
+
     <main>
         <section class="hero-section">
             <%
                 Usuario usuario = (Usuario) session.getAttribute("usuario");
-                if (usuario != null && usuario.getTelefono() == null) {
+                if (usuario != null && usuario.getTelefono() == null) { // ADMIN
             %>
                 <h1>Bienvenido a la página de administración</h1>
                 <p>Aquí puedes gestionar los proyectos pendientes, revisar mensajes de usuarios y supervisar la actividad de la plataforma.</p>
                 <div class="hero-buttons">
-                    <a href="${pageContext.request.contextPath}/admin/proyectos" class="btn btn-primary">Gestionar Proyectos</a>
+                    <a href="${pageContext.request.contextPath}/pendingProjects" class="btn btn-primary">Gestionar Proyectos</a>
                     <a href="${pageContext.request.contextPath}/showMessages" class="btn btn-secondary">Ver Mensajes</a>
                 </div>
             <%
@@ -38,7 +38,7 @@
                 <h1>Financia Tus Sueños</h1>
                 <p>Bienvenido a nuestra plataforma de crowdfunding. Aquí puedes encontrar proyectos innovadores para apoyar o puedes crear tu propio proyecto y buscar el financiamiento que necesitas para hacerlo realidad.</p>
                 <div class="hero-buttons">
-                    <a href="${pageContext.request.contextPath}/categories" class="btn btn-primary">Explorar Proyectos</a>
+                    <a href="${pageContext.request.contextPath}/activeProjects" class="btn btn-primary">Explorar Proyectos</a>
                     <%
                         if (usuario == null) {
                     %>
@@ -57,7 +57,7 @@
         </section>
     </main>
 
-	<jsp:include page="/views/fragments/footer.jspf" />
+    <jsp:include page="/views/fragments/footer.jspf" />
 
 </body>
 </html>

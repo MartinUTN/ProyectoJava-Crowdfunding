@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import modelo.Categoria;
+import modelo.Pais;
 import modelo.Proyecto;
 import modelo.Usuario;
 import repositorio.CategoriaDAO;
@@ -52,7 +54,6 @@ public class CreateProjectServlet extends HttpServlet {
             int idPais = Integer.parseInt(request.getParameter("pais"));
 
             Usuario usuario = (Usuario) session.getAttribute("usuario");
-            int idUsuario = usuario.getIdUsuario();
 
             Proyecto nuevoProyecto = new Proyecto();
             nuevoProyecto.setNombreProyecto(nombre);
@@ -61,18 +62,23 @@ public class CreateProjectServlet extends HttpServlet {
             nuevoProyecto.setMontoRecaudado(BigDecimal.ZERO);
             nuevoProyecto.setFechaIni(LocalDate.now());
             nuevoProyecto.setFechaFin(fechaLimite);
-            nuevoProyecto.setIdCreador(idUsuario);
-            nuevoProyecto.setIdCategoria(idCategoria);
-            nuevoProyecto.setIdPais(idPais);
-            nuevoProyecto.setEstado("Activo");
+            nuevoProyecto.setIdCreador(usuario.getIdUsuario());
+            nuevoProyecto.setEstado("Pendiente"); 
             nuevoProyecto.setFoto("default.jpg");
+
+            Categoria categoria = new Categoria();
+            categoria.setIdCategoria(idCategoria);
+            nuevoProyecto.setCategoria(categoria);
+
+            Pais pais = new Pais();
+            pais.setIdPais(idPais);
+            nuevoProyecto.setPais(pais);
 
             ProyectoDAO proyectoDAO = new ProyectoDAO();
             proyectoDAO.insertar(nuevoProyecto);
 
-            session.setAttribute("successMessage", "¡Proyecto creado con éxito!");
-
-            response.sendRedirect(request.getContextPath() + "/home");
+            request.setAttribute("successMessage", "Proyecto creado correctamente y pendiente de aprobación.");
+            response.sendRedirect(request.getContextPath() + "/myProjects");
 
         } catch (Exception e) {
             e.printStackTrace();

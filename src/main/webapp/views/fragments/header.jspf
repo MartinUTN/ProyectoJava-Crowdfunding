@@ -16,36 +16,20 @@
                     Usuario usuario = (Usuario) session.getAttribute("usuario");
                     if (usuario == null) {
                 %>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/home" class="nav-link">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/about" class="nav-link">Nosotros</a>
-                        </li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/home" class="nav-link">Inicio</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-link">Nosotros</a></li>
                 <%
-                    } else if (usuario.getTelefono() == null) {
+                    } else if (usuario.getTelefono() == null) {  // ADMIN
                 %>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/proyectosDestacados" class="nav-link">Proyectos Destacados</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/admin/proyectos" class="nav-link">Proyectos Pendientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/showMessages" class="nav-link">Mensajes</a>
-                        </li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/activeProjects" class="nav-link">Proyectos Activos</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/pendingProjects" class="nav-link">Proyectos Pendientes</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/showMessages" class="nav-link">Mensajes</a></li>
                 <%
-                    } else {
+                    } else {  // USUARIO NORMAL
                 %>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/proyectosDestacados" class="nav-link">Proyectos Destacados</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/misDonaciones" class="nav-link">Mis Donaciones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/misProyectos" class="nav-link">Mis Proyectos</a>
-                        </li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/activeProjects" class="nav-link">Proyectos Destacados</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/views/user/my-donations.jsp" class="nav-link">Mis Donaciones</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/myProjects" class="nav-link">Mis Proyectos</a></li>
                 <%
                     }
                 %>

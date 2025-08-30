@@ -4,14 +4,18 @@ import java.util.List;
 import modelo.Proyecto;
 
 public interface IProyectoDAO {
+	
+    void insertar(Proyecto proyecto);
     
-    public List<Proyecto> obtenerTodos();
+    void actualizar(Proyecto proyecto);
     
-    public Proyecto obtenerPorId(int id);
+    void eliminar(int id);
     
-    public void insertar(Proyecto proyecto);
+    Proyecto obtenerPorId(int id);
     
-    public void actualizar(Proyecto proyecto);
+    List<Proyecto> obtenerActivos();
     
-    public void eliminar(int id);
+    List<Proyecto> obtenerPendientes();
+    
+    List<Proyecto> obtenerPorUsuario(int idUsuario);
 }
