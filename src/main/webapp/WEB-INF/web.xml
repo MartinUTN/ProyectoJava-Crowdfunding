@@ -44,14 +44,6 @@
         <url-pattern>/how-it-works</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-        <servlet-name>Contact</servlet-name>
-        <jsp-file>/views/common/contact.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Contact</servlet-name>
-        <url-pattern>/contact</url-pattern>
-    </servlet-mapping>
     
     <jsp-config>
         <jsp-property-group>

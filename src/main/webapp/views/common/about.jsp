@@ -17,7 +17,6 @@
 <body>
 
 	<jsp:include page="/views/fragments/header.jspf" />
-
     <main class="flex-grow p-8">
         <div class="container main-content-container">
             <div class="content-layout">

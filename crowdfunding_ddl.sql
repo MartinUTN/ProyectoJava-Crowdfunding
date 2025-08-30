@@ -84,3 +84,14 @@ CREATE TABLE Avance_Proyecto (
     PRIMARY KEY (idProyecto, idAvance),
     FOREIGN KEY (idProyecto) REFERENCES Proyecto(idProyecto)
 );
+
+CREATE TABLE contacto (
+    idContacto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    asunto VARCHAR(200) NOT NULL,
+    mensaje TEXT NOT NULL,
+    fecha DATETIME NOT NULL,
+    visto BOOLEAN NOT NULL DEFAULT FALSE
+);
+

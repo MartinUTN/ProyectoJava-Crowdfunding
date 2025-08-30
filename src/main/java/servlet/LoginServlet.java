@@ -1,48 +1,52 @@
 package servlet;
 
 import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import modelo.Usuario;
 import repositorio.UsuarioDAO;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-	    request.getRequestDispatcher("/views/auth/login.jsp").forward(request, response);
-	}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("/views/auth/login.jsp").forward(request, response);
+    }
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-	    
-	    String email = request.getParameter("email");
-	    String password = request.getParameter("password");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	    UsuarioDAO usuarioDAO = new UsuarioDAO();
-	    Usuario usuario = usuarioDAO.validarUsuario(email, password);
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-	    if (usuario != null) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.validarUsuario(email, password);
 
-	    	HttpSession oldSession = request.getSession(false);
-	        if (oldSession != null) {
-	            oldSession.invalidate();
-	        }
+        if (usuario != null) {
+            HttpSession oldSession = request.getSession(false);
+            if (oldSession != null) {
+                oldSession.invalidate();
+            }
 
-	        HttpSession newSession = request.getSession(true);
-	        newSession.setAttribute("usuario", usuario);
+            HttpSession newSession = request.getSession(true);
+            newSession.setAttribute("usuario", usuario);
 
-	        response.sendRedirect(request.getContextPath() + "/views/common/home.jsp");
-	    } else {
-	        request.setAttribute("error", "Email o contraseña incorrectos");
-	        request.getRequestDispatcher("/views/auth/login.jsp").forward(request, response);
-	    }
-	}
+            newSession.setAttribute("successMessage", "¡Bienvenido, " + usuario.getNombre() + "!");
+
+            response.sendRedirect(request.getContextPath() + "/home");
+
+        } else {
+            request.setAttribute("errorMessage", "Email o contraseña incorrectos");
+            request.getRequestDispatcher("/views/auth/login.jsp").forward(request, response);
+        }
+    }
 }

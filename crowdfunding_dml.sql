@@ -16,7 +16,29 @@ INSERT INTO Pais (nombrePais) VALUES
 ('Pakistán'), ('Bangladés'), ('Sri Lanka'), ('Nepal'), ('Kazajistán'),
 ('Egipto'), ('Sudáfrica'), ('Nigeria'), ('Kenia'), ('Marruecos'),
 ('Argelia'), ('Túnez'), ('Ghana'), ('Etiopía'), ('Tanzania'),
-('Australia'), ('Nueva Zelanda'), ('Fiyi'), ('Papúa Nueva Guinea');
+('Australia'), ('Nueva Zelanda'), ('Fiyi'), ('Papúa Nueva Guinea'),
+('Islandia'), ('Luxemburgo'), ('Mónaco'), ('Andorra'), ('San Marino'),
+('Chipre'), ('Malta'), ('Liechtenstein'), ('Estonia'), ('Letonia'),
+('Lituania'), ('Eslovaquia'), ('Eslovenia'), ('Serbia'), ('Bosnia y Herzegovina'),
+('Albania'), ('Macedonia del Norte'), ('Montenegro'), ('Kosovo'), ('Bielorrusia'),
+('Moldavia'), ('Georgia'), ('Armenia'), ('Azerbaiyán'), ('Kirguistán'),
+('Turkmenistán'), ('Tayikistán'), ('Uzbekistán'), ('Mongolia'), ('Bután'),
+('Myanmar'), ('Camboya'), ('Laos'), ('Brunei'), ('Timor Oriental'), ('Maldivas'),
+('Omán'), ('Kuwait'), ('Bahréin'), ('Jordania'), ('Líbano'), ('Siria'), ('Irak'),
+('Irán'), ('Afganistán'), ('Yemen'), ('Angola'), ('Mozambique'), ('Zambia'),
+('Zimbabue'), ('Botsuana'), ('Namibia'), ('Uganda'), ('Ruanda'), ('Burundi'),
+('Malaui'), ('Madagascar'), ('Mauricio'), ('Seychelles'), ('Senegal'), ('Camerún'),
+('Costa de Marfil'), ('Liberia'), ('Sierra Leona'), ('Togo'), ('Benín'), ('Níger'),
+('Chad'), ('Sudán'), ('Sudán del Sur'), ('Somalia'), ('Yibuti'), ('Eritrea'),
+('Libia'), ('Mauritania'), ('Malí'), ('Burkina Faso'), ('Guinea'), ('Guinea-Bisáu'),
+('Guinea Ecuatorial'), ('Gabón'), ('República del Congo'), ('República Democrática del Congo'),
+('República Centroafricana'), ('Santo Tomé y Príncipe'), ('Cabo Verde'), ('Gambia'),
+('Lesoto'), ('Suazilandia'), ('Comoras'), ('Samoa'), ('Tonga'), ('Vanuatu'),
+('Islas Salomón'), ('Kiribati'), ('Tuvalu'), ('Palaos'), ('Micronesia'), ('Marshall'),
+('Nauru'), ('Belice'), ('Guyana'), ('Surinam'), ('Guayana Francesa'), ('Granada'),
+('San Vicente y las Granadinas'), ('Santa Lucía'), ('Antigua y Barbuda'), ('Dominica'),
+('San Cristóbal y Nieves'), ('Anguila'), ('Bermudas'), ('Islas Caimán'), ('Turcas y Caicos'),
+('Islas Vírgenes Británicas'), ('Islas Vírgenes Americanas'), ('Groenlandia'), ('San Pedro y Miquelón');
 
 INSERT INTO Categoria (nombreCategoria) VALUES
 ('Tecnología'), ('Arte'), ('Música'), ('Cine'), ('Diseño'),
@@ -30,3 +52,8 @@ VALUES
 ('arturoillia@crowdfunding.com', 'Admin1234', 'Arturo', 'Illia', '+5491112345678', '2000-09-15'),
 ('sole@gmail.com', 'arequito', 'Soledad', 'Pastorutti', '+56987654321', '1999-05-15'),
 ('horacioguarani@yahoo.com', 'horacio123', 'Horacio', 'Guarani', '+525512345678', '2009-02-05');
+
+INSERT INTO contacto (nombre, email, asunto, mensaje, fecha, visto) VALUES
+('María González', 'maria.gonzalez@email.com', 'Consulta sobre servicios', 'Buenos días, me gustaría recibir información sobre los servicios que ofrecen y sus precios. ¿Podrían enviarme un catálogo?', '2024-01-15 09:30:00', FALSE),
+('Carlos Rodríguez', 'carlos.rod@empresa.com', 'Problema con mi cuenta', 'Hola, no puedo acceder a mi cuenta desde ayer. Me aparece error de contraseña aunque estoy seguro de que la estoy escribiendo bien.', '2024-01-16 14:22:15', FALSE),
+('Ana Martínez', 'ana.martinez@gmail.com', 'Solicitud de presupuesto', 'Estoy interesada en el servicio premium para mi negocio. Necesito un presupuesto detallado para presentarlo a mi junta directiva.', '2024-01-17 11:45:30', FALSE);

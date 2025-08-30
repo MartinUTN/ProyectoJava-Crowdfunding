@@ -13,11 +13,13 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/messages.css">
+	
 </head>
 <body>
 
 	<jsp:include page="/views/fragments/header.jspf" />
-
+	<%@ include file="/views/fragments/messages.jspf" %>
     <main>
         <section class="hero-section">
             <%
@@ -28,7 +30,7 @@
                 <p>Aquí puedes gestionar los proyectos pendientes, revisar mensajes de usuarios y supervisar la actividad de la plataforma.</p>
                 <div class="hero-buttons">
                     <a href="${pageContext.request.contextPath}/admin/proyectos" class="btn btn-primary">Gestionar Proyectos</a>
-                    <a href="${pageContext.request.contextPath}/admin/mensajes" class="btn btn-secondary">Ver Mensajes</a>
+                    <a href="${pageContext.request.contextPath}/showMessages" class="btn btn-secondary">Ver Mensajes</a>
                 </div>
             <%
                 } else {
@@ -44,7 +46,7 @@
                     <%
                         } else {
                     %>
-                        <a href="${pageContext.request.contextPath}/crearProyecto" class="btn btn-secondary">Crear Proyecto</a>
+                        <a href="${pageContext.request.contextPath}/createProject" class="btn btn-secondary">Crear Proyecto</a>
                     <%
                         }
                     %>

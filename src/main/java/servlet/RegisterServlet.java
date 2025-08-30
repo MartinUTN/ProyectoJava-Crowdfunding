@@ -2,28 +2,30 @@ package servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import modelo.Usuario;
 import repositorio.UsuarioDAO;
 
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-	    request.getRequestDispatcher("/views/auth/register.jsp").forward(request, response);
-	}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("/views/auth/register.jsp").forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             String nombre = request.getParameter("nombre");
             String apellido = request.getParameter("apellido");
@@ -39,7 +41,6 @@ public class RegisterServlet extends HttpServlet {
             nuevoUsuario.setPassword(password);
             nuevoUsuario.setTelefono(telefono);
             nuevoUsuario.setFechaNacimiento(fechaNacimiento);
-            
 
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.insertar(nuevoUsuario);
@@ -47,11 +48,14 @@ public class RegisterServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("usuario", nuevoUsuario);
 
+            session.setAttribute("successMessage", "¡Registro exitoso! Bienvenido, " + nombre);
+
             response.sendRedirect(request.getContextPath() + "/home");
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/views/auth/register.jsp");
+            request.setAttribute("errorMessage", "Hubo un error en el registro. Inténtalo de nuevo.");
+            request.getRequestDispatcher("/views/auth/register.jsp").forward(request, response);
         }
     }
 }

@@ -14,7 +14,7 @@
                 <li><a href="${pageContext.request.contextPath}/categories">Categorias</a></li>
                 <li><a href="${pageContext.request.contextPath}/how-it-works">Cómo funciona</a></li>
                 <li><a href="${pageContext.request.contextPath}/about">Sobre Nosotros</a></li>
-                <li><a href="${pageContext.request.contextPath}/contact">Contacto</a></li>
+				<li><a href="${pageContext.request.contextPath}/contact">Contacto</a></li>
                 
             </ul>
         </div>

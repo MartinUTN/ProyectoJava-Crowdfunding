@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ include file="/views/fragments/header.jspf" %>
 
 <!DOCTYPE html>
@@ -8,7 +9,6 @@
     <title>Contacto</title>
     
     <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
-    
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/contact.css">
@@ -20,7 +20,12 @@
         <h1 class="contact-title">Contáctanos</h1>
         <p class="contact-intro">Si tienes preguntas, comentarios o sugerencias, completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
 
-        <form class="contact-form" method="post" action="#">
+        <!-- Mensaje de éxito -->
+        <c:if test="${not empty successMessage}">
+            <p class="success-message">${successMessage}</p>
+        </c:if>
+
+        <form class="contact-form" method="post" action="${pageContext.request.contextPath}/contact">
             <div class="form-group">
                 <label for="nombre">Nombre completo</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>

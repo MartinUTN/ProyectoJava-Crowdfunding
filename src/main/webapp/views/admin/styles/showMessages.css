@@ -1,0 +1,59 @@
+.messages-container {
+    padding: 2rem;
+}
+
+.messages-container h1 {
+    margin-bottom: 1.5rem;
+}
+
+.message-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #fff;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.message-card h3 {
+    margin-top: 0;
+    color: var(--dark-green);
+}
+
+.message-card p {
+    margin: 0.25rem 0;
+}
+
+.message-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-review {
+    background: var(--primary-green);
+    color: white;
+}
+.btn-review:hover {
+    background: var(--dark-green);
+}
+
+.btn-seen {
+    background: #ccc;
+    color: black;
+}
+.btn-seen:hover {
+    background: #999;
+    color: white;
+}

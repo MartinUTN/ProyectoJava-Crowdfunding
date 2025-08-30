@@ -32,7 +32,7 @@
                             <a href="${pageContext.request.contextPath}/admin/proyectos" class="nav-link">Proyectos Pendientes</a>
                         </li>
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/admin/mensajes" class="nav-link">Mensajes</a>
+                            <a href="${pageContext.request.contextPath}/showMessages" class="nav-link">Mensajes</a>
                         </li>
                 <%
                     } else {

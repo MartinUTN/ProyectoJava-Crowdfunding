@@ -1,0 +1,15 @@
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+
+<c:if test="${not empty successMessage}">
+    <div class="alert success">
+        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        ${successMessage}
+    </div>
+</c:if>
+
+<c:if test="${not empty errorMessage}">
+    <div class="alert error">
+        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        ${errorMessage}
+    </div>
+</c:if>

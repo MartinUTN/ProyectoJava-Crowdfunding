@@ -3,36 +3,40 @@ package servlet;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import modelo.*;
-import repositorio.*;
 
-@WebServlet(name = "CrearProyectoServlet", urlPatterns = {"/crearProyecto"})
-public class CrearProyectoServlet extends HttpServlet {
+import modelo.Proyecto;
+import modelo.Usuario;
+import repositorio.CategoriaDAO;
+import repositorio.PaisDAO;
+import repositorio.ProyectoDAO;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
+@WebServlet(name = "CreateProjectServlet", urlPatterns = {"/createProject"})
+public class CreateProjectServlet extends HttpServlet {
 
-	    CategoriaDAO categoriaDAO = new CategoriaDAO();
-	    PaisDAO paisDAO = new PaisDAO();
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	    request.setAttribute("categorias", categoriaDAO.obtenerTodos());
-	    request.setAttribute("paises", paisDAO.obtenerTodos());
+        CategoriaDAO categoriaDAO = new CategoriaDAO();
+        PaisDAO paisDAO = new PaisDAO();
 
-	    request.getRequestDispatcher("/views/proyecto/crear-proyecto.jsp").forward(request, response);
-	}
+        request.setAttribute("categorias", categoriaDAO.obtenerTodos());
+        request.setAttribute("paises", paisDAO.obtenerTodos());
 
+        request.getRequestDispatcher("/views/project/create-project.jsp").forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("usuario") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
@@ -66,12 +70,14 @@ public class CrearProyectoServlet extends HttpServlet {
             ProyectoDAO proyectoDAO = new ProyectoDAO();
             proyectoDAO.insertar(nuevoProyecto);
 
+            session.setAttribute("successMessage", "¡Proyecto creado con éxito!");
+
             response.sendRedirect(request.getContextPath() + "/home");
 
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "Hubo un error al crear el proyecto.");
-            request.getRequestDispatcher("/views/proyecto/crear-proyecto.jsp").forward(request, response);
+            request.getRequestDispatcher("/views/project/create-project.jsp").forward(request, response);
         }
     }
 }

@@ -10,7 +10,7 @@
     
     <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/proyecto/styles/crear_proyecto.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/project/styles/create-project.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
@@ -31,7 +31,7 @@
                 }
             %>
 
-            <form action="${pageContext.request.contextPath}/crearProyecto" method="post" class="form-content">
+            <form action="${pageContext.request.contextPath}/createProject" method="post" class="form-content">
                 <div class="form-group">
                     <label for="nombre">Título del Proyecto</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Ej: Aplicación para reciclar plástico" required>
