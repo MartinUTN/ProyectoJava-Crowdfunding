@@ -37,7 +37,6 @@
 	<%--  
 	creo que queda mejor el inicio y el register sin footer
 	por ej kickstarter no lo tiene
-	
 	<jsp:include page="/views/fragments/footer.jspf" />
 	--%>
 </body>
