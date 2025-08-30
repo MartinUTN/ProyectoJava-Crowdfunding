@@ -22,14 +22,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             ps.setString(2, password);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    usuario = new Usuario();
-                    usuario.setIdUsuario(rs.getInt("idUsuario"));
-                    usuario.setNombre(rs.getString("nombre"));
-                    usuario.setApellido(rs.getString("apellido"));
-                    usuario.setEmail(rs.getString("email"));
-                    if (rs.getDate("fechaNacimiento") != null) {
-                        usuario.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                    }
+                    usuario = mapearUsuario(rs);
                 }
             }
         } catch (SQLException e) {
@@ -40,14 +33,19 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public void insertar(Usuario usuario) {
-        String sql = "INSERT INTO usuario (email, password, nombre, apellido, fechaNacimiento) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO usuario (email, password, nombre, apellido, telefono, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = Conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, usuario.getEmail());
             ps.setString(2, usuario.getPassword());
             ps.setString(3, usuario.getNombre());
             ps.setString(4, usuario.getApellido());
-            ps.setDate(5, java.sql.Date.valueOf(usuario.getFechaNacimiento()));
+            ps.setString(5, usuario.getTelefono());
+            if (usuario.getFechaNacimiento() != null) {
+                ps.setDate(6, java.sql.Date.valueOf(usuario.getFechaNacimiento()));
+            } else {
+                ps.setDate(6, null);
+            }
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,15 +60,7 @@ public class UsuarioDAO implements IUsuarioDAO {
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(rs.getInt("idUsuario"));
-                usuario.setNombre(rs.getString("nombre"));
-                usuario.setApellido(rs.getString("apellido"));
-                usuario.setEmail(rs.getString("email"));
-                if (rs.getDate("fechaNacimiento") != null) {
-                    usuario.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                }
-                usuarios.add(usuario);
+                usuarios.add(mapearUsuario(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,14 +77,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    usuario = new Usuario();
-                    usuario.setIdUsuario(rs.getInt("idUsuario"));
-                    usuario.setNombre(rs.getString("nombre"));
-                    usuario.setApellido(rs.getString("apellido"));
-                    usuario.setEmail(rs.getString("email"));
-                    if (rs.getDate("fechaNacimiento") != null) {
-                        usuario.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                    }
+                    usuario = mapearUsuario(rs);
                 }
             }
         } catch (SQLException e) {
@@ -105,15 +88,20 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public void actualizar(Usuario usuario) {
-        String sql = "UPDATE usuario SET email = ?, password = ?, nombre = ?, apellido = ?, fechaNacimiento = ? WHERE idUsuario = ?";
+        String sql = "UPDATE usuario SET email = ?, password = ?, nombre = ?, apellido = ?, telefono = ?, fechaNacimiento = ? WHERE idUsuario = ?";
         try (Connection con = Conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, usuario.getEmail());
             ps.setString(2, usuario.getPassword());
             ps.setString(3, usuario.getNombre());
             ps.setString(4, usuario.getApellido());
-            ps.setDate(5, java.sql.Date.valueOf(usuario.getFechaNacimiento()));
-            ps.setInt(6, usuario.getIdUsuario());
+            ps.setString(5, usuario.getTelefono());
+            if (usuario.getFechaNacimiento() != null) {
+                ps.setDate(6, java.sql.Date.valueOf(usuario.getFechaNacimiento()));
+            } else {
+                ps.setDate(6, null);
+            }
+            ps.setInt(7, usuario.getIdUsuario());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,5 +118,20 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    // Método auxiliar para mapear ResultSet -> Usuario
+    private Usuario mapearUsuario(ResultSet rs) throws SQLException {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(rs.getInt("idUsuario"));
+        usuario.setNombre(rs.getString("nombre"));
+        usuario.setApellido(rs.getString("apellido"));
+        usuario.setEmail(rs.getString("email"));
+        usuario.setPassword(rs.getString("password"));
+        usuario.setTelefono(rs.getString("telefono"));
+        if (rs.getDate("fechaNacimiento") != null) {
+            usuario.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+        }
+        return usuario;
     }
 }

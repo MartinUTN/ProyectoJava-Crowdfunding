@@ -26,6 +26,33 @@
         <url-pattern>/about</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Categories</servlet-name>
+        <jsp-file>/views/common/categories.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Categories</servlet-name>
+        <url-pattern>/categories</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HowItWorks</servlet-name>
+        <jsp-file>/views/common/how-it-works.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HowItWorks</servlet-name>
+        <url-pattern>/how-it-works</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Contact</servlet-name>
+        <jsp-file>/views/common/contact.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Contact</servlet-name>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+    
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>

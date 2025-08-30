@@ -8,7 +8,6 @@
     
     <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
     
-    
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/auth/styles/login.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
@@ -24,7 +23,7 @@
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="Ej: johndoe@gmail.com" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña</label>

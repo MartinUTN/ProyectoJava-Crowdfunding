@@ -4,34 +4,67 @@
 <header class="header">
     <div class="header-container">
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/views/common/home.jsp" class="logo-link">
+            <a href="${pageContext.request.contextPath}/home" class="logo-link">
                 <img src="${pageContext.request.contextPath}/assets/simbolo-dinero.png" alt="logo" class="logo-img" />
                 <span class="logo-text">ImpulsaMe</span>
             </a>
         </div>
+
         <nav class="nav">
             <ul class="nav-list">
-                <li class="nav-item">
-					<a href="${pageContext.request.contextPath}/home" class="nav-link">Inicio</a>
-				</li>
-                <li class="nav-item">
-					<a href="${pageContext.request.contextPath}/about" class="nav-link">Nosotros</a>                
-                </li>
+                <%
+                    Usuario usuario = (Usuario) session.getAttribute("usuario");
+                    if (usuario == null) {
+                %>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/home" class="nav-link">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/about" class="nav-link">Nosotros</a>
+                        </li>
+                <%
+                    } else if (usuario.getTelefono() == null) {
+                %>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/admin/proyectos" class="nav-link">Proyectos Pendientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/admin/mensajes" class="nav-link">Mensajes</a>
+                        </li>
+                <%
+                    } else {
+                %>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/proyectosDestacados" class="nav-link">Proyectos Destacados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/misDonaciones" class="nav-link">Mis Donaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/misProyectos" class="nav-link">Mis Proyectos</a>
+                        </li>
+                <%
+                    }
+                %>
             </ul>
         </nav>
+
         <div class="auth-buttons">
-            <% 
-                Usuario usuario = (Usuario) session.getAttribute("usuario");
-                if (usuario != null) {
+            <%
+                if (usuario == null) {
             %>
-					<a href="${pageContext.request.contextPath}/crearProyecto" class="btn btn-register">Crear Proyecto</a>
-                    <span class="welcome-message">Hola, <%= usuario.getNombre() %></span>
+                    <a href="${pageContext.request.contextPath}/login" class="btn btn-login">Iniciar Sesión</a>
+                    <a href="${pageContext.request.contextPath}/register" class="btn btn-register">Registrarse</a>
+            <%
+                } else if (usuario.getTelefono() == null) {
+            %>
+                    <span class="welcome-message">Hola Administrador</span>
                     <a href="${pageContext.request.contextPath}/logout" class="btn btn-logout">Cerrar Sesión</a>
             <%
                 } else {
             %>
-                    <a href="${pageContext.request.contextPath}/login" class="btn btn-login">Iniciar Sesión</a>
-                    <a href="${pageContext.request.contextPath}/register" class="btn btn-register">Registrarse</a>
+                    <span class="welcome-message">Hola, <%= usuario.getNombre() %></span>
+                    <a href="${pageContext.request.contextPath}/logout" class="btn btn-logout">Cerrar Sesión</a>
             <%
                 }
             %>

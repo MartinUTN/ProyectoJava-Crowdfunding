@@ -11,15 +11,17 @@
             <h3>Enlaces Rápidos</h3>
             <ul>
                 <li><a href="#">Proyectos</a></li>
-                <li><a href="#">Categorías</a></li>
-                <li><a href="#">Cómo funciona</a></li>
+                <li><a href="${pageContext.request.contextPath}/categories">Categorias</a></li>
+                <li><a href="${pageContext.request.contextPath}/how-it-works">Cómo funciona</a></li>
                 <li><a href="${pageContext.request.contextPath}/about">Sobre Nosotros</a></li>
+                <li><a href="${pageContext.request.contextPath}/contact">Contacto</a></li>
+                
             </ul>
         </div>
         <div class="footer-column footer-social">
             <h3>Síguenos</h3>
             <div class="social-icons">
-                <a href="#" aria-label="Facebook">
+                <a href="https://www.facebook.com/?locale=en_US" aria-label="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
                          viewBox="0 0 24 24" fill="currentColor">
                          <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667
@@ -27,7 +29,7 @@
                          c-3.596 0-5.192 1.583-5.192 4.615v2.385z"/>
                     </svg>
                 </a>
-                <a href="#" aria-label="X">
+                <a href="https://x.com/?lang=en" aria-label="X">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
                          viewBox="0 0 24 24" fill="currentColor">
                          <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406
@@ -35,7 +37,7 @@
                          l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
                     </svg>
                 </a>
-                <a href="#" aria-label="Instagram">
+                <a href="https://www.instagram.com/" aria-label="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
                          viewBox="0 0 24 24" fill="currentColor">
                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07

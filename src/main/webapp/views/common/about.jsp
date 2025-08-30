@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
 
-
 </head>
 
 <body>

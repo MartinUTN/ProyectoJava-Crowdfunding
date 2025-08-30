@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - ImpulaMe</title>
+    <title>Registro - ImpulsaMe</title>
     
     <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
     
@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
-
 </head>
 <body>
 	<jsp:include page="/views/fragments/header.jspf" />
@@ -23,19 +22,23 @@
             <form action="${pageContext.request.contextPath}/register" method="post">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan" required>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input type="text" id="apellido" name="apellido" required>
+                    <input type="text" id="apellido" name="apellido" placeholder="Ej: Pérez" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="Ej: johndoe@gmail.com" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña</label>
                     <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: +54 11 1234-5678" required>
                 </div>
                 <div class="form-group">
                     <label for="fecha_nacimiento">Fecha de Nacimiento</label>
@@ -51,5 +54,5 @@
 	por ej kickstarter no lo tiene
 	<jsp:include page="/views/fragments/footer.jspf" />
 	--%>
-	</body>
+</body>
 </html>

@@ -11,7 +11,6 @@ public class Usuario {
     private String telefono;
     private LocalDate fechaNacimiento;
     
-    // Getters y Setters
 
     public int getIdUsuario() {
         return idUsuario;

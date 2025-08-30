@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import modelo.Usuario;
 import repositorio.UsuarioDAO;
 
@@ -29,18 +30,24 @@ public class RegisterServlet extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fecha_nacimiento"));
+            String telefono = request.getParameter("telefono");
 
             Usuario nuevoUsuario = new Usuario();
             nuevoUsuario.setNombre(nombre);
             nuevoUsuario.setApellido(apellido);
             nuevoUsuario.setEmail(email);
             nuevoUsuario.setPassword(password);
+            nuevoUsuario.setTelefono(telefono);
             nuevoUsuario.setFechaNacimiento(fechaNacimiento);
+            
 
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.insertar(nuevoUsuario);
 
-            response.sendRedirect(request.getContextPath() + "/views/auth/login.jsp");
+            HttpSession session = request.getSession(true);
+            session.setAttribute("usuario", nuevoUsuario);
+
+            response.sendRedirect(request.getContextPath() + "/home");
 
         } catch (Exception e) {
             e.printStackTrace();
