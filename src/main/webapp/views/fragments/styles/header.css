@@ -1,0 +1,108 @@
+.header {
+    background-color: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 50px;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-left: 10px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+/* --- ESTILOS DE BOTONES CORREGIDOS Y MÁS ESPECÍFICOS --- */
+
+.auth-buttons .btn-login {
+    background-color: #28a745; /* Verde con relleno */
+    border-color: #28a745;
+    color: white;
+}
+
+.auth-buttons .btn-login:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+.auth-buttons .btn-register {
+    background-color: transparent; /* Sin relleno */
+    border-color: #28a745; /* Borde verde */
+    color: #28a745; /* Texto verde */
+}
+
+.auth-buttons .btn-register:hover {
+    background-color: #28a745; /* Relleno verde al pasar el mouse */
+    color: white;
+}
+
+/* --- FIN DE ESTILOS CORREGIDOS --- */
+
+.welcome-message {
+    color: #333;
+    font-weight: bold;
+}
+
+.btn-logout {
+    background-color: transparent;
+    color: #6c757d;
+    font-weight: normal;
+    text-decoration: none;
+    border: none;
+}
+
+.btn-logout:hover {
+    color: #343a40;
+    text-decoration: underline;
+}

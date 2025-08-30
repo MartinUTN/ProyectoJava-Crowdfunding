@@ -1,0 +1,40 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="modelo.Usuario" %>
+
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="${pageContext.request.contextPath}/views/common/home.jsp" class="logo-link">
+                <img src="${pageContext.request.contextPath}/assets/simbolo-dinero.png" alt="logo" class="logo-img" />
+                <span class="logo-text">ImpulsaMe</span>
+            </a>
+        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+					<a href="${pageContext.request.contextPath}/home" class="nav-link">Inicio</a>
+				</li>
+                <li class="nav-item">
+					<a href="${pageContext.request.contextPath}/about" class="nav-link">Nosotros</a>                
+                </li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <% 
+                Usuario usuario = (Usuario) session.getAttribute("usuario");
+                if (usuario != null) {
+            %>
+					<a href="${pageContext.request.contextPath}/crearProyecto" class="btn btn-register">Crear Proyecto</a>
+                    <span class="welcome-message">Hola, <%= usuario.getNombre() %></span>
+                    <a href="${pageContext.request.contextPath}/logout" class="btn btn-logout">Cerrar Sesión</a>
+            <%
+                } else {
+            %>
+                    <a href="${pageContext.request.contextPath}/login" class="btn btn-login">Iniciar Sesión</a>
+                    <a href="${pageContext.request.contextPath}/register" class="btn btn-register">Registrarse</a>
+            <%
+                }
+            %>
+        </div>
+    </div>
+</header>
