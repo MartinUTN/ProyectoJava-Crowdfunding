@@ -28,6 +28,7 @@
             <c:forEach var="p" items="${pendingProjects}">
                 <div class="project-card">
                     <h2>${p.nombreProyecto}</h2>
+                    <img src="${pageContext.request.contextPath}/uploads/${p.foto}" alt="Imagen del Proyecto">
                     <p><b>Categoría:</b> ${p.categoria.nombreCategoria}</p>
                     <p><b>País:</b> ${p.pais.nombrePais}</p>
                     <p><b>Monto Meta:</b> $${p.montoMeta}</p>

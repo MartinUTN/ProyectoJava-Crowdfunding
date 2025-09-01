@@ -27,8 +27,9 @@
         <div class="card-grid">
             <c:forEach var="p" items="${myProjects}">
 			    <c:if test="${p.estado ne 'Borrado'}">
-			        <div class="project-card">
+			        <div class="project-card">			   
 			            <h2>${p.nombreProyecto}</h2>
+			            <img src="${pageContext.request.contextPath}/uploads/${p.foto}" alt="Imagen del Proyecto">
 			            <p><b>Descripción:</b> ${p.descripcion}</p>
 			            <p><b>Monto Meta:</b> $${p.montoMeta}</p>
 			            <p><b>Monto Recaudado:</b> $${p.montoRecaudado}</p>

@@ -31,43 +31,58 @@
                 }
             %>
 
-            <form action="${pageContext.request.contextPath}/createProject" method="post" class="form-content">
-                <div class="form-group">
-                    <label for="nombre">Título del Proyecto</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Aplicación para reciclar plástico" required>
-                </div>
-                <div class="form-group">
-                    <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" rows="5" placeholder="Describe en detalle tu proyecto, objetivos y cómo utilizarás los fondos..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="monto_objetivo">Monto Objetivo ($)</label>
-                    <input type="number" id="monto_objetivo" name="monto_objetivo" step="0.01" min="1" placeholder="Ej: 50000" required>
-                </div>
-                <div class="form-group">
-                    <label for="fecha_limite">Fecha Límite</label>
-                    <input type="date" id="fecha_limite" name="fecha_limite" required>
-                </div>
-                <div class="form-group">
-                    <label for="categoria">Categoría</label>
-					<select id="categoria" name="categoria" required>
-					    <option value="" disabled selected>&lt;&lt;Seleccione una opción&gt;&gt;</option>
-					    <c:forEach var="c" items="${categorias}">
-					        <option value="${c.idCategoria}">${c.nombreCategoria}</option>
-					    </c:forEach>
-					</select>
-                </div>
-                <div class="form-group">
-					<label for="pais">País</label>
-					<select id="pais" name="pais" required>
-					    <option value="" disabled selected>&lt;&lt;Seleccione una opción&gt;&gt;</option>
-					    <c:forEach var="p" items="${paises}">
-					        <option value="${p.idPais}">${p.nombrePais}</option>
-					    </c:forEach>
-					</select>
-                </div>
-                <button type="submit" class="btn-submit">Crear Proyecto</button>
-            </form>
+            <form action="${pageContext.request.contextPath}/createProject" 
+		      method="post" 
+		      class="form-content" 
+		      enctype="multipart/form-data">
+			    <div class="form-group">
+			        <label for="nombre">Título del Proyecto</label>
+			        <input type="text" id="nombre" name="nombre" placeholder="Ej: Aplicación para reciclar plástico" required>
+			    </div>
+			
+			    <div class="form-group">
+			        <label for="descripcion">Descripción</label>
+			        <textarea id="descripcion" name="descripcion" rows="5" placeholder="Describe en detalle tu proyecto..." required></textarea>
+			    </div>
+			
+			    <div class="form-group">
+			        <label for="monto_objetivo">Monto Objetivo ($)</label>
+			        <input type="number" id="monto_objetivo" name="monto_objetivo" step="0.01" min="1" placeholder="Ej: 50000" required>
+			    </div>
+			
+			    <div class="form-group">
+			        <label for="fecha_limite">Fecha Límite</label>
+			        <input type="date" id="fecha_limite" name="fecha_limite" required>
+			    </div>
+			
+			    <div class="form-group">
+			        <label for="categoria">Categoría</label>
+			        <select id="categoria" name="categoria" required>
+			            <option value="" disabled selected>&lt;&lt;Seleccione una opción&gt;&gt;</option>
+			            <c:forEach var="c" items="${categorias}">
+			                <option value="${c.idCategoria}">${c.nombreCategoria}</option>
+			            </c:forEach>
+			        </select>
+			    </div>
+			
+			    <div class="form-group">
+			        <label for="pais">País</label>
+			        <select id="pais" name="pais" required>
+			            <option value="" disabled selected>&lt;&lt;Seleccione una opción&gt;&gt;</option>
+			            <c:forEach var="p" items="${paises}">
+			                <option value="${p.idPais}">${p.nombrePais}</option>
+			            </c:forEach>
+			        </select>
+			    </div>
+			
+			    <div class="form-group">
+			        <label for="foto">Imagen del Proyecto</label>
+			        <input type="file" id="foto" name="foto" accept="image/*" required>
+			    </div>
+			
+			    <button type="submit" class="btn-submit">Crear Proyecto</button>
+			</form>
+
         </div>
     </main>
 

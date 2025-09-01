@@ -1,15 +1,18 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 
 import modelo.Categoria;
 import modelo.Pais;
@@ -20,7 +23,10 @@ import repositorio.PaisDAO;
 import repositorio.ProyectoDAO;
 
 @WebServlet(name = "CreateProjectServlet", urlPatterns = {"/createProject"})
+@MultipartConfig   
 public class CreateProjectServlet extends HttpServlet {
+
+    private static final String UPLOAD_DIR = "uploads";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,6 +61,15 @@ public class CreateProjectServlet extends HttpServlet {
 
             Usuario usuario = (Usuario) session.getAttribute("usuario");
 
+            Part filePart = request.getPart("foto");
+            String fileName = filePart.getSubmittedFileName();
+            String uploadPath = request.getServletContext().getRealPath("") + File.separator + UPLOAD_DIR;
+
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) uploadDir.mkdir();
+
+            filePart.write(uploadPath + File.separator + fileName);
+
             Proyecto nuevoProyecto = new Proyecto();
             nuevoProyecto.setNombreProyecto(nombre);
             nuevoProyecto.setDescripcion(descripcion);
@@ -63,9 +78,8 @@ public class CreateProjectServlet extends HttpServlet {
             nuevoProyecto.setFechaIni(LocalDate.now());
             nuevoProyecto.setFechaFin(fechaLimite);
             nuevoProyecto.setIdCreador(usuario.getIdUsuario());
-            nuevoProyecto.setEstado("Pendiente"); 
-            nuevoProyecto.setFoto("default.jpg");
-
+            nuevoProyecto.setEstado("Pendiente");
+            nuevoProyecto.setFoto(fileName);
             Categoria categoria = new Categoria();
             categoria.setIdCategoria(idCategoria);
             nuevoProyecto.setCategoria(categoria);
@@ -77,7 +91,6 @@ public class CreateProjectServlet extends HttpServlet {
             ProyectoDAO proyectoDAO = new ProyectoDAO();
             proyectoDAO.insertar(nuevoProyecto);
 
-            request.setAttribute("successMessage", "Proyecto creado correctamente y pendiente de aprobación.");
             response.sendRedirect(request.getContextPath() + "/myProjects");
 
         } catch (Exception e) {

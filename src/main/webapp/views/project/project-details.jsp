@@ -24,6 +24,7 @@
     <c:if test="${not empty proyecto}">
         <div class="project-card">
             <h1>${proyecto.nombreProyecto}</h1>
+            <img src="${pageContext.request.contextPath}/uploads/${proyecto.foto}" alt="Imagen del Proyecto">
             <p><strong>Descripción:</strong> ${proyecto.descripcion}</p>
             <p><strong>Monto Meta:</strong> $${proyecto.montoMeta}</p>
             <p><strong>Monto Recaudado:</strong> $${proyecto.montoRecaudado}</p>
