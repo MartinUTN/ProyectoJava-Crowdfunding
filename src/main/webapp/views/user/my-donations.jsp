@@ -16,7 +16,7 @@
 <body>
     <jsp:include page="/views/fragments/header.jspf"/>
 
-    <main class="projects-container">
+    <main class="donations-container">
         <h1>Mis donaciones</h1>
 
         <p class="no-donations">No hay donaciones realizadas.</p>

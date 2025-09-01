@@ -28,6 +28,7 @@
             <c:forEach var="p" items="${activeProjects}">
                 <div class="project-card" onclick="window.location.href='${pageContext.request.contextPath}/projectDetails?id=${p.idProyecto}'">
                     <h2>${p.nombreProyecto}</h2>
+                    <img src="${pageContext.request.contextPath}/uploads/${p.foto}" alt="Imagen del Proyecto">
                     <p><b>Descripción:</b> ${p.descripcion}</p>
                     <p><b>Monto Meta:</b> $${p.montoMeta}</p>
                     <p><b>Monto Recaudado:</b> $${p.montoRecaudado}</p>

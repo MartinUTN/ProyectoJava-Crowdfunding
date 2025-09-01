@@ -4,3 +4,9 @@
     text-align: center;
     margin-top: 20px;
 }
+
+.donations-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
