@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/contact.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/little-glow-buttons.css">
+	
 </head>
 <body>
     <main class="contact-container">

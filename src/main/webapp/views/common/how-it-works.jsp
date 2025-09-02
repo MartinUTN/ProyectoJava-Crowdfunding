@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">    
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/how-it-works.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/little-glow-buttons.css">
 	
 </head>
 <body>

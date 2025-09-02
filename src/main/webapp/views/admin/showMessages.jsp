@@ -9,6 +9,7 @@
     <title>Mensajes recibidos</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/little-glow-buttons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/styles/showMessages.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">

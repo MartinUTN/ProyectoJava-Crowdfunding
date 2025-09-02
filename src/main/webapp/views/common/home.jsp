@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/messages.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/hero-text.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/glow-buttons.css">
-    
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/little-glow-buttons.css">
+	
+	
 </head>
 <body>
 

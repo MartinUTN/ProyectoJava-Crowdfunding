@@ -1,0 +1,47 @@
+.little-glow-btn {
+    position: relative;
+    padding: 8px 20px;
+    border: 1.5px solid var(--primary-green);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primary-green);
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.little-glow-btn:hover {
+    background: var(--primary-green);
+    color: #fff;
+    box-shadow: 
+        0 0 8px var(--primary-green),
+        0 0 15px var(--primary-green),
+        0 0 30px var(--primary-green);
+}
+
+.little-glow-btn-inverse {
+    position: relative;
+    padding: 8px 20px;
+    border: 1.5px solid var(--primary-green);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--primary-green);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.little-glow-btn-inverse:hover {
+    background: #fff;
+    color: var(--primary-green);
+    box-shadow: 
+        0 0 8px var(--primary-green),
+        0 0 15px var(--primary-green),
+        0 0 30px var(--primary-green);
+}

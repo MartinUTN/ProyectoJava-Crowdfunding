@@ -8,6 +8,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/auth/styles/form.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/little-glow-buttons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">

@@ -6,7 +6,8 @@
     <title>Acerca de Nosotros</title>
 
     <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
-
+    
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/little-glow-buttons.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/about.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">

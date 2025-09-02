@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/little-glow-buttons.css">
+
 </head>
 <body>
     <jsp:include page="/views/fragments/header.jspf"/>
@@ -34,19 +36,22 @@
                         <p><b>País:</b> ${p.pais.nombrePais}</p>
                         <p><b>Monto Meta:</b> $${p.montoMeta}</p>
                         <p><b>Recaudado:</b> $${p.montoRecaudado}</p>
-                        
+                        <br>
+
                         <div class="card-actions">
                             <form action="${pageContext.request.contextPath}/approveProject" method="post">
                                 <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-                                <button class="btn btn-approve" type="submit">Aprobar</button>
+                                <button class="little-glow-btn-inverse" type="submit">Aprobar</button>
                             </form>
+                            <br>
                             <form action="${pageContext.request.contextPath}/rejectProject" method="post">
                                 <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-                                <button class="btn btn-reject" type="submit">Rechazar</button>
+                                <button class="little-glow-btn" type="submit">Rechazar</button>
                             </form>
+                            <br>
     						<form action="${pageContext.request.contextPath}/projectDetails" method="get">
     						    <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-    						    <button type="submit" class="btn btn-view">Ver más</button>
+    						    <button type="submit" class="little-glow-btn-inverse">Ver más</button>
     						</form>
                         </div>
                     </div>
