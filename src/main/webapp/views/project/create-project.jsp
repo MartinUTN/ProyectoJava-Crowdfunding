@@ -75,10 +75,10 @@
 			        </select>
 			    </div>
 			
-			    <div class="form-group">
-			        <label for="foto">Imagen del Proyecto</label>
-			        <input type="file" id="foto" name="foto" accept="image/*" required>
-			    </div>
+				<div class="form-group file-input">
+				    <label for="foto" class="file-input-button">Selecciona una imagen para tu proyecto</label>
+				    <input type="file" id="foto" name="foto" accept="image/*" required>
+				</div>
 			
 			    <button type="submit" class="btn-submit">Crear Proyecto</button>
 			</form>

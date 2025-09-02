@@ -85,3 +85,41 @@ textarea {
     background-color: #218838;
     transform: translateY(-2px);
 }
+
+/* Styling for a custom file input button */
+.form-group.file-input {
+    text-align: center;
+}
+
+.file-input input[type="file"] {
+    position: absolute; /* Moves the input out of the visible area */
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.file-input-button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #555;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-input-button:hover {
+    background-color: #f0f0f0;
+    border-color: #28a745;
+}
+
+.file-input-button:active {
+    transform: scale(0.98);
+}
