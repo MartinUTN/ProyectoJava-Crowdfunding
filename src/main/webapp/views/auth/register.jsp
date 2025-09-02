@@ -3,56 +3,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - ImpulsaMe</title>
-    
+
     <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
-    
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/auth/styles/register.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/auth/styles/form.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
 </head>
 <body>
-	<jsp:include page="/views/fragments/header.jspf" />
+    <jsp:include page="/views/fragments/header.jspf" />
 
     <main class="main-container">
-        <div class="form-container">
+        <div class="form-card">
             <h2>Crea tu Cuenta</h2>
             <form action="${pageContext.request.contextPath}/register" method="post">
                 <div class="form-group">
+                    <input type="text" id="nombre" name="nombre" placeholder=" " required>
                     <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan" required>
                 </div>
                 <div class="form-group">
+                    <input type="text" id="apellido" name="apellido" placeholder=" " required>
                     <label for="apellido">Apellido</label>
-                    <input type="text" id="apellido" name="apellido" placeholder="Ej: Pérez" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Ej: johndoe@gmail.com" required>
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Correo electrónico</label>
                 </div>
                 <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder=" " required>
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required>
                 </div>
                 <div class="form-group">
+                    <input type="tel" id="telefono" name="telefono" placeholder=" " required>
                     <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: +54 11 1234-5678" required>
                 </div>
                 <div class="form-group">
-                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
                     <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
                 </div>
-                <button type="submit" class="btn-submit">Registrarse</button>
+                <button type="submit" class="glow-btn">Registrarse</button>
             </form>
         </div>
     </main>
 
-	<%--  
-	creo que queda mejor el inicio y el register sin footer
-	por ej kickstarter no lo tiene
-	<jsp:include page="/views/fragments/footer.jspf" />
-	--%>
+    <jsp:include page="/views/fragments/footer.jspf" />
 </body>
 </html>

@@ -36,25 +36,26 @@
             </ul>
         </nav>
 
-        <div class="auth-buttons">
-            <%
-                if (usuario == null) {
-            %>
-                    <a href="${pageContext.request.contextPath}/login" class="btn btn-login">Iniciar Sesión</a>
-                    <a href="${pageContext.request.contextPath}/register" class="btn btn-register">Registrarse</a>
-            <%
-                } else if (usuario.getTelefono() == null) {
-            %>
-                    <span class="welcome-message">Hola Administrador</span>
-                    <a href="${pageContext.request.contextPath}/logout" class="btn btn-logout">Cerrar Sesión</a>
-            <%
-                } else {
-            %>
-                    <span class="welcome-message">Hola, <%= usuario.getNombre() %></span>
-                    <a href="${pageContext.request.contextPath}/logout" class="btn btn-logout">Cerrar Sesión</a>
-            <%
-                }
-            %>
-        </div>
+		<div class="auth-buttons">
+		    <%
+		        if (usuario == null) {
+		    %>
+		        <a href="${pageContext.request.contextPath}/login" class="little-glow-btn">Iniciar Sesión</a>
+		        <a href="${pageContext.request.contextPath}/register" class="little-glow-btn-inverse">Registrarse</a>
+		    <%
+		        } else if (usuario.getTelefono() == null) {
+		    %>
+		        <span class="welcome-message">Hola Administrador</span>
+		        <a href="${pageContext.request.contextPath}/logout" class="btn btn-logout">Cerrar Sesión</a>
+		    <%
+		        } else {
+		    %>
+		        <span class="welcome-message">Hola, <%= usuario.getNombre() %></span>
+		        <a href="${pageContext.request.contextPath}/logout" class="btn btn-logout">Cerrar Sesión</a>
+		    <%
+		        }
+		    %>
+		</div>
+
     </div>
 </header>

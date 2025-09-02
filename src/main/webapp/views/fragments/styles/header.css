@@ -1,28 +1,68 @@
-.header {
-    background-color: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo-link {
-    display: flex;
-    align-items: center;
+.little-glow-btn {
+    position: relative;
+    padding: 8px 20px;
+    border: 1.5px solid var(--primary-green);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primary-green);
+    background: transparent;
+    cursor: pointer;
     text-decoration: none;
+    transition: box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
-.logo-img {
-    height: 50px;
+.little-glow-btn:hover {
+    background: var(--primary-green);
+    color: #fff;
+    box-shadow: 
+        0 0 8px var(--primary-green),
+        0 0 15px var(--primary-green),
+        0 0 30px var(--primary-green);
+}
+
+.little-glow-btn-inverse {
+    position: relative;
+    padding: 8px 20px;
+    border: 1.5px solid var(--primary-green);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--primary-green);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.little-glow-btn-inverse:hover {
+    background: #fff;
+    color: var(--primary-green);
+    box-shadow: 
+        0 0 8px var(--primary-green),
+        0 0 15px var(--primary-green),
+        0 0 30px var(--primary-green);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .auth-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .little-glow-btn,
+    .little-glow-btn-inverse {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .logo-text {
@@ -46,12 +86,6 @@
     font-size: 1rem;
 }
 
-.auth-buttons {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
 .btn {
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -63,10 +97,8 @@
     border: 2px solid transparent;
 }
 
-/* --- ESTILOS DE BOTONES CORREGIDOS Y MÁS ESPECÍFICOS --- */
-
 .auth-buttons .btn-login {
-    background-color: #28a745; /* Verde con relleno */
+    background-color: #28a745;
     border-color: #28a745;
     color: white;
 }
@@ -77,17 +109,15 @@
 }
 
 .auth-buttons .btn-register {
-    background-color: transparent; /* Sin relleno */
-    border-color: #28a745; /* Borde verde */
-    color: #28a745; /* Texto verde */
+    background-color: transparent;
+    border-color: #28a745;
+    color: #28a745;
 }
 
 .auth-buttons .btn-register:hover {
-    background-color: #28a745; /* Relleno verde al pasar el mouse */
+    background-color: #28a745;
     color: white;
 }
-
-/* --- FIN DE ESTILOS CORREGIDOS --- */
 
 .welcome-message {
     color: #333;
@@ -105,4 +135,29 @@
 .btn-logout:hover {
     color: #343a40;
     text-decoration: underline;
+}
+
+.header { 
+    background-color: #fff;
+    padding: 1rem 2rem; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky; top: 0; z-index: 1000; 
+} 
+
+.header-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+} 
+
+.logo-link { 
+    display: flex; 
+    align-items: center; 
+    text-decoration: none; 
+} 
+
+.logo-img { 
+    height: 50px;
 }

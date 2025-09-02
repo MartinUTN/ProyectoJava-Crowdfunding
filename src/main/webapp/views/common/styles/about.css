@@ -47,6 +47,7 @@ main {
     flex-direction: column;
     align-items: center;
 }
+
 .text-section {
     width: 100%;
     flex-grow: 1;

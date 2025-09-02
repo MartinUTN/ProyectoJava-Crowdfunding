@@ -16,9 +16,12 @@ public class ProjectDetailsServlet extends HttpServlet {
         
         String idParam = request.getParameter("idProyecto");
         if (idParam == null || idParam.isEmpty()) {
-            request.setAttribute("errorMessage", "No se especificó un proyecto.");
-            request.getRequestDispatcher("/views/project/active-projects.jsp").forward(request, response);
-            return;
+            idParam = request.getParameter("id");
+            if (idParam == null || idParam.isEmpty()) {
+                request.setAttribute("errorMessage", "No se especificó un proyecto.");
+                request.getRequestDispatcher("/views/project/active-projects.jsp").forward(request, response);
+                return;
+            }
         }
 
         try {
@@ -28,11 +31,11 @@ public class ProjectDetailsServlet extends HttpServlet {
 
             if (proyecto == null) {
                 request.setAttribute("errorMessage", "Proyecto no encontrado.");
+                request.getRequestDispatcher("/views/project/active-projects.jsp").forward(request, response);
             } else {
                 request.setAttribute("proyecto", proyecto);
+                request.getRequestDispatcher("/views/project/project-details.jsp").forward(request, response);
             }
-
-            request.getRequestDispatcher("/views/project/project-details.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "ID de proyecto inválido.");
             request.getRequestDispatcher("/views/project/active-projects.jsp").forward(request, response);

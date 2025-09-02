@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/messages.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/hero-text.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/glow-buttons.css">
+    
 </head>
 <body>
 
@@ -29,24 +32,37 @@
                 <h1>Bienvenido a la página de administración</h1>
                 <p>Aquí puedes gestionar los proyectos pendientes, revisar mensajes de usuarios y supervisar la actividad de la plataforma.</p>
                 <div class="hero-buttons">
-                    <a href="${pageContext.request.contextPath}/pendingProjects" class="btn btn-primary">Gestionar Proyectos</a>
-                    <a href="${pageContext.request.contextPath}/showMessages" class="btn btn-secondary">Ver Mensajes</a>
+                    <a href="${pageContext.request.contextPath}/pendingProjects" class="glow-btn">Gestionar Proyectos</a>
+                    <a href="${pageContext.request.contextPath}/showMessages" class="glow-btn-inverse">Ver Mensajes</a>
                 </div>
             <%
                 } else {
             %>
                 <h1>Financia Tus Sueños</h1>
                 <p>Bienvenido a nuestra plataforma de crowdfunding. Aquí puedes encontrar proyectos innovadores para apoyar o puedes crear tu propio proyecto y buscar el financiamiento que necesitas para hacerlo realidad.</p>
+                
+                <section class="hero-text">
+                    <h1>
+                        I'M A 
+                        <span>
+                            <span>CREATOR</span>
+                            <span>DONOR</span>
+                            <span>ENTREPRENEUR</span>
+                            <span>INNOVATOR</span>
+                        </span>
+                    </h1>
+                </section>
+
                 <div class="hero-buttons">
-                    <a href="${pageContext.request.contextPath}/activeProjects" class="btn btn-primary">Explorar Proyectos</a>
+                    <a href="${pageContext.request.contextPath}/activeProjects" class="glow-btn">Explorar Proyectos</a>
                     <%
                         if (usuario == null) {
                     %>
-                        <a href="${pageContext.request.contextPath}/login" class="btn btn-secondary">Crear Proyecto</a>
+                        <a href="${pageContext.request.contextPath}/login" class="glow-btn-inverse">Crear Proyecto</a>
                     <%
                         } else {
                     %>
-                        <a href="${pageContext.request.contextPath}/createProject" class="btn btn-secondary">Crear Proyecto</a>
+                        <a href="${pageContext.request.contextPath}/createProject" class="glow-btn-inverse">Crear Proyecto</a>
                     <%
                         }
                     %>

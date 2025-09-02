@@ -4,6 +4,8 @@
 
 .messages-container h1 {
     margin-bottom: 1.5rem;
+    text-align: center;
+    
 }
 
 .message-card {
@@ -56,4 +58,17 @@
 .btn-seen:hover {
     background: #999;
     color: white;
+}
+
+.no-messages{
+    font-size: 1.2rem;
+    color: gray;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.no-messages-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
 }

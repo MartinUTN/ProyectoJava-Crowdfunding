@@ -27,40 +27,41 @@
         <div class="card-grid">
             <c:forEach var="p" items="${myProjects}">
 			    <c:if test="${p.estado ne 'Borrado'}">
-			        <div class="project-card">			   
-			            <h2>${p.nombreProyecto}</h2>
+			        <div class="project-card">
 			            <img src="${pageContext.request.contextPath}/uploads/${p.foto}" alt="Imagen del Proyecto">
-			            <p><b>Descripción:</b> ${p.descripcion}</p>
-			            <p><b>Monto Meta:</b> $${p.montoMeta}</p>
-			            <p><b>Monto Recaudado:</b> $${p.montoRecaudado}</p>
-			            <p><b>Fecha Fin:</b> ${p.fechaFin}</p>
-			            <p><b>Estado:</b> ${p.estado}</p>
+			            <div class="project-details-wrapper">
+			                <h2>${p.nombreProyecto}</h2>
+			                <p><b>Descripción:</b> ${p.descripcion}</p>
+			                <p><b>Monto Meta:</b> $${p.montoMeta}</p>
+			                <p><b>Monto Recaudado:</b> $${p.montoRecaudado}</p>
+			                <p><b>Fecha Fin:</b> ${p.fechaFin}</p>
+			                <p><b>Estado:</b> ${p.estado}</p>
+			                <p><b>Categoría:</b> ${p.categoria.nombreCategoria}</p>
+			                <p><b>País:</b> ${p.pais.nombrePais}</p>
 			
-			            <p><b>Categoría:</b> ${p.categoria.nombreCategoria}</p>
-			            <p><b>País:</b> ${p.pais.nombrePais}</p>
-			
-			            <c:if test="${p.estado eq 'Cancelado'}">
-			                <p><b>Motivo Cancelación:</b> ${p.cancelacion.motivo}</p>
-			                <p><b>Fecha Cancelación:</b> ${p.cancelacion.fecha}</p>
-			                <form action="${pageContext.request.contextPath}/deleteProject" method="post">
-			                    <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-			                    <button type="submit" class="btn-danger">Borrar Definitivamente</button>
-			                </form>
-			            </c:if>
-			
-			            <c:if test="${p.estado ne 'Cancelado'}">
-			                <div class="card-actions">
-			                    <form action="${pageContext.request.contextPath}/editProject" method="get" style="display:inline;">
+			                <c:if test="${p.estado eq 'Cancelado'}">
+			                    <p><b>Motivo Cancelación:</b> ${p.cancelacion.motivo}</p>
+			                    <p><b>Fecha Cancelación:</b> ${p.cancelacion.fecha}</p>
+			                    <form action="${pageContext.request.contextPath}/deleteProject" method="post">
 			                        <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-			                        <button type="submit" class="btn-view">Editar</button>
+			                        <button type="submit" class="btn-danger">Borrar Definitivamente</button>
 			                    </form>
-			
-			                    <form action="${pageContext.request.contextPath}/cancelProject" method="get" style="display:inline;">
-			                        <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-			                        <button type="submit" class="btn-reject">Cancelar</button>
-			                    </form>
-			                </div>
-			            </c:if>
+			                </c:if>
+							<br>
+			                <c:if test="${p.estado ne 'Cancelado'}">
+			                    <div class="card-actions"  onclick="window.location.href='${pageContext.request.contextPath}/projectDetails?id=${p.idProyecto}'">
+			                        <form action="${pageContext.request.contextPath}/editProject" method="get" style="display:inline;">
+			                            <input type="hidden" name="idProyecto" value="${p.idProyecto}">
+			                            <button type="submit" class="little-glow-btn-inverse">Editar</button>
+			                        </form>
+			                        <br>	<br>		                     
+			                        <form action="${pageContext.request.contextPath}/cancelProject" method="get" style="display:inline;">
+			                            <input type="hidden" name="idProyecto" value="${p.idProyecto}">
+			                            <button type="submit" class="little-glow-btn">Cancelar</button>
+			                        </form>
+			                    </div>
+			                </c:if>
+			            </div>
 			        </div>
 			    </c:if>
 			</c:forEach>

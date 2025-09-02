@@ -26,30 +26,29 @@
 
         <div class="card-grid">
             <c:forEach var="p" items="${pendingProjects}">
-                <div class="project-card">
-                    <h2>${p.nombreProyecto}</h2>
+                <div class="project-card"  onclick="window.location.href='${pageContext.request.contextPath}/projectDetails?id=${p.idProyecto}'">
                     <img src="${pageContext.request.contextPath}/uploads/${p.foto}" alt="Imagen del Proyecto">
-                    <p><b>Categoría:</b> ${p.categoria.nombreCategoria}</p>
-                    <p><b>País:</b> ${p.pais.nombrePais}</p>
-                    <p><b>Monto Meta:</b> $${p.montoMeta}</p>
-                    <p><b>Recaudado:</b> $${p.montoRecaudado}</p>
-                    
-                    <div class="card-actions">
-                        <form action="${pageContext.request.contextPath}/approveProject" method="post">
-                            <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-                            <button class="btn btn-approve" type="submit">Aprobar</button>
-                        </form>
+                    <div class="project-details-wrapper">
+                        <h2>${p.nombreProyecto}</h2>
+                        <p><b>Categoría:</b> ${p.categoria.nombreCategoria}</p>
+                        <p><b>País:</b> ${p.pais.nombrePais}</p>
+                        <p><b>Monto Meta:</b> $${p.montoMeta}</p>
+                        <p><b>Recaudado:</b> $${p.montoRecaudado}</p>
                         
-                        <form action="${pageContext.request.contextPath}/rejectProject" method="post">
-                            <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-                            <button class="btn btn-reject" type="submit">Rechazar</button>
-                        </form>
-
-						<form action="${pageContext.request.contextPath}/projectDetails" method="get">
-						    <input type="hidden" name="idProyecto" value="${p.idProyecto}">
-						    <button type="submit" class="btn btn-view">Ver más</button>
-						</form>
-
+                        <div class="card-actions">
+                            <form action="${pageContext.request.contextPath}/approveProject" method="post">
+                                <input type="hidden" name="idProyecto" value="${p.idProyecto}">
+                                <button class="btn btn-approve" type="submit">Aprobar</button>
+                            </form>
+                            <form action="${pageContext.request.contextPath}/rejectProject" method="post">
+                                <input type="hidden" name="idProyecto" value="${p.idProyecto}">
+                                <button class="btn btn-reject" type="submit">Rechazar</button>
+                            </form>
+    						<form action="${pageContext.request.contextPath}/projectDetails" method="get">
+    						    <input type="hidden" name="idProyecto" value="${p.idProyecto}">
+    						    <button type="submit" class="btn btn-view">Ver más</button>
+    						</form>
+                        </div>
                     </div>
                 </div>
             </c:forEach>
@@ -59,4 +58,3 @@
     <jsp:include page="/views/fragments/footer.jspf"/>
 </body>
 </html>
-

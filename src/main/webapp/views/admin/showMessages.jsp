@@ -19,7 +19,9 @@
 
         <c:choose>
             <c:when test="${empty mensajes}">
-                <p>No hay mensajes por el momento.</p>
+             	<div class="no-messages-container">
+                	<p class="no-messages">No hay mensajes por el momento.</p>
+                </div>
             </c:when>
             <c:otherwise>
                 <c:forEach var="m" items="${mensajes}">

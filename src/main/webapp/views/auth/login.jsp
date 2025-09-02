@@ -3,40 +3,35 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - ImpulaMe</title>
-    
-    <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
-    
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/auth/styles/login.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
+    <title>Iniciar Sesión - ImpulsaMe</title>
 
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/simbolo-dinero.png">
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/auth/styles/form.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/globals.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
 </head>
 <body>
-	<jsp:include page="/views/fragments/header.jspf" />
+    <jsp:include page="/views/fragments/header.jspf" />
 
     <main class="main-container">
-        <div class="form-container">
+        <div class="form-card">
             <h2>Iniciar Sesión</h2>
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Ej: johndoe@gmail.com" required>
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Correo electrónico</label>
                 </div>
                 <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder=" " required>
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="btn-submit">Ingresar</button>
+                <button type="submit" class="glow-btn">Ingresar</button>
             </form>
         </div>
     </main>
-	<%--  
-	creo que queda mejor el inicio y el register sin footer
-	por ej kickstarter no lo tiene
-	<jsp:include page="/views/fragments/footer.jspf" />
-	--%>
+
+    <jsp:include page="/views/fragments/footer.jspf" />
 </body>
 </html>
