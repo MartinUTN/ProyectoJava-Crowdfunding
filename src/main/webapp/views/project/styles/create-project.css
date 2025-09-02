@@ -60,8 +60,8 @@
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #28a745; /* Color de realce verde */
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.25); /* Sombra de realce verde */
+    border-color: #28a745; 
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.25); 
 }
 
 textarea {
@@ -86,13 +86,12 @@ textarea {
     transform: translateY(-2px);
 }
 
-/* Styling for a custom file input button */
 .form-group.file-input {
     text-align: center;
 }
 
 .file-input input[type="file"] {
-    position: absolute; /* Moves the input out of the visible area */
+    position: absolute; 
     width: 1px;
     height: 1px;
     padding: 0;
