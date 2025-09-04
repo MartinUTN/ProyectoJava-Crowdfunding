@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ page import="modelo.Usuario" %>
+<%@ page import="modelo.Proyecto" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -31,8 +33,23 @@
 	            <p><strong>Estado:</strong> ${proyecto.estado}</p>
 				<p><strong>Categoría:</strong> ${proyecto.categoria.nombreCategoria}</p>
 				<p><strong>País:</strong> ${proyecto.pais.nombrePais}</p>
+
+                <c:if test="${not empty sessionScope.usuario and empty sessionScope.usuario.telefono and not empty proyecto and proyecto.estado eq 'Pendiente'}">
+                    <div class="admin-actions">
+                        <form action="${pageContext.request.contextPath}/approveProject" method="post" style="display:inline;">
+                            <input type="hidden" name="idProyecto" value="${proyecto.idProyecto}">
+                            <button class="little-glow-btn-inverse" type="submit">Aprobar</button>
+                        </form>
+                        <form action="${pageContext.request.contextPath}/rejectProject" method="post" style="display:inline;">
+                            <input type="hidden" name="idProyecto" value="${proyecto.idProyecto}">
+                            <button class="little-glow-btn" type="submit">Rechazar</button>
+                        </form>
+                    </div>
+                </c:if>
+
 	        </div>
 	</main>
 	<jsp:include page="/views/fragments/footer.jspf" />
 </body>
 </html>
+

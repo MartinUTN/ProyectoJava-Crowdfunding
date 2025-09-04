@@ -47,3 +47,13 @@
     background-color: var(--primary-green);
     color: white;
 }
+
+
+.hero-content-box {
+    max-width: 960px;
+    margin: 0 auto;  
+    padding: 3rem;  
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

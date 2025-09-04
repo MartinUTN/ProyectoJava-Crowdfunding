@@ -28,27 +28,24 @@
 
         <div class="card-grid">
             <c:forEach var="p" items="${pendingProjects}">
-                <div class="project-card"  onclick="window.location.href='${pageContext.request.contextPath}/projectDetails?id=${p.idProyecto}'">
-                    <img src="${pageContext.request.contextPath}/uploads/${p.foto}" alt="Imagen del Proyecto">
+                <div class="project-card">
+                    <img src="${pageContext.request.contextPath}/uploads/${p.foto}" alt="Imagen del Proyecto" onclick="window.location.href='${pageContext.request.contextPath}/projectDetails?id=${p.idProyecto}'">
                     <div class="project-details-wrapper">
-                        <h2>${p.nombreProyecto}</h2>
+                        <h2 onclick="window.location.href='${pageContext.request.contextPath}/projectDetails?id=${p.idProyecto}'">${p.nombreProyecto}</h2>
                         <p><b>Categoría:</b> ${p.categoria.nombreCategoria}</p>
                         <p><b>País:</b> ${p.pais.nombrePais}</p>
                         <p><b>Monto Meta:</b> $${p.montoMeta}</p>
                         <p><b>Recaudado:</b> $${p.montoRecaudado}</p>
-                        <br>
-
-                        <div class="card-actions">
+                        
+                        <div class="card-actions pending-actions">
                             <form action="${pageContext.request.contextPath}/approveProject" method="post">
                                 <input type="hidden" name="idProyecto" value="${p.idProyecto}">
                                 <button class="little-glow-btn-inverse" type="submit">Aprobar</button>
                             </form>
-                            <br>
                             <form action="${pageContext.request.contextPath}/rejectProject" method="post">
                                 <input type="hidden" name="idProyecto" value="${p.idProyecto}">
                                 <button class="little-glow-btn" type="submit">Rechazar</button>
                             </form>
-                            <br>
     						<form action="${pageContext.request.contextPath}/projectDetails" method="get">
     						    <input type="hidden" name="idProyecto" value="${p.idProyecto}">
     						    <button type="submit" class="little-glow-btn-inverse">Ver más</button>

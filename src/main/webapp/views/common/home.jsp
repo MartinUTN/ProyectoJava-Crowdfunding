@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/footer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/fragments/styles/messages.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/hero-text.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/glow-buttons.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/views/common/styles/little-glow-buttons.css">
-	
 	
 </head>
 <body>
@@ -27,19 +25,7 @@
 
     <main>
         <section class="hero-section">
-            <%
-                Usuario usuario = (Usuario) session.getAttribute("usuario");
-                if (usuario != null && usuario.getTelefono() == null) { // ADMIN
-            %>
-                <h1>Bienvenido a la página de administración</h1>
-                <p>Aquí puedes gestionar los proyectos pendientes, revisar mensajes de usuarios y supervisar la actividad de la plataforma.</p>
-                <div class="hero-buttons">
-                    <a href="${pageContext.request.contextPath}/pendingProjects" class="glow-btn">Gestionar Proyectos</a>
-                    <a href="${pageContext.request.contextPath}/showMessages" class="glow-btn-inverse">Ver Mensajes</a>
-                </div>
-            <%
-                } else {
-            %>
+            <div class="hero-content-box">
                 <h1>Financia Tus Sueños</h1>
                 <p>Bienvenido a nuestra plataforma de crowdfunding. Aquí puedes encontrar proyectos innovadores para apoyar o puedes crear tu propio proyecto y buscar el financiamiento que necesitas para hacerlo realidad.</p>
                 
@@ -57,21 +43,9 @@
 
                 <div class="hero-buttons">
                     <a href="${pageContext.request.contextPath}/activeProjects" class="glow-btn">Explorar Proyectos</a>
-                    <%
-                        if (usuario == null) {
-                    %>
-                        <a href="${pageContext.request.contextPath}/login" class="glow-btn-inverse">Crear Proyecto</a>
-                    <%
-                        } else {
-                    %>
-                        <a href="${pageContext.request.contextPath}/createProject" class="glow-btn-inverse">Crear Proyecto</a>
-                    <%
-                        }
-                    %>
+                    <a href="${pageContext.request.contextPath}/login" class="glow-btn-inverse">Crear Proyecto</a>
                 </div>
-            <%
-                }
-            %>
+            </div>
         </section>
     </main>
 
@@ -79,3 +53,4 @@
 
 </body>
 </html>
+

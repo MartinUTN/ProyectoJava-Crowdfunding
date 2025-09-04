@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 
             newSession.setAttribute("successMessage", "¡Bienvenido, " + usuario.getNombre() + "!");
 
-            response.sendRedirect(request.getContextPath() + "/home");
+            response.sendRedirect(request.getContextPath() + "/activeProjects");
 
         } else {
             request.setAttribute("errorMessage", "Email o contraseña incorrectos");

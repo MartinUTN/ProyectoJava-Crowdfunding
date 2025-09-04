@@ -65,25 +65,3 @@
     border-radius: 4px;
 }
 
-.glow-btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 30px;
-    border: 2px solid var(--primary-green);
-    color: var(--primary-green);
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.glow-btn:hover {
-    background: var(--primary-green);
-    color: #fff;
-    box-shadow: 
-        0 0 8px var(--primary-green),
-        0 0 16px var(--primary-green),
-        0 0 24px var(--primary-green);
-}
