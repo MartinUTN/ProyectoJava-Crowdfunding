@@ -1,63 +1,60 @@
 .messages-container {
     padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .messages-container h1 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
     text-align: center;
-    
+}
+
+.messages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch; /* Asegura que las cards en la misma fila tengan la misma altura */
 }
 
 .message-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 1.5rem;
     background: #fff;
-    position: relative;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.message-card h3 {
-    margin-top: 0;
+.message-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.message-header h3 {
+    margin: 0 0 0.5rem 0;
     color: var(--dark-green);
+    font-size: 1.2rem;
 }
 
 .message-card p {
     margin: 0.25rem 0;
+    font-size: 0.95rem;
+    color: #555;
+    word-wrap: break-word;
+}
+
+.message-date {
+    display: block;
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 1rem;
 }
 
 .message-actions {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
-}
-
-.btn {
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-}
-
-.btn-review {
-    background: var(--primary-green);
-    color: white;
-}
-.btn-review:hover {
-    background: var(--dark-green);
-}
-
-.btn-seen {
-    background: #ccc;
-    color: black;
-}
-.btn-seen:hover {
-    background: #999;
-    color: white;
+    margin-top: 1.5rem;
 }
 
 .no-messages{
@@ -72,3 +69,4 @@
     margin: 40px auto;
     padding: 20px;
 }
+

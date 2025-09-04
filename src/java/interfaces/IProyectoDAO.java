@@ -14,8 +14,13 @@ public interface IProyectoDAO {
     Proyecto obtenerPorId(int id);
     
     List<Proyecto> obtenerActivos();
+
+    List<Proyecto> buscarProyectos(String query);
     
+    List<String> buscarSugerencias(String query);
+
     List<Proyecto> obtenerPendientes();
     
     List<Proyecto> obtenerPorUsuario(int idUsuario);
 }
+

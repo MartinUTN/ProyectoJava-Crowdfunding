@@ -29,19 +29,10 @@ public class ShowMessagesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String action = request.getParameter("action");
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        ContactoDAO dao = new ContactoDAO();
-
-        if ("visto".equals(action)) {
-            dao.marcarComoVisto(id);
-        } else if ("revisar".equals(action)) {
-            response.sendRedirect(request.getContextPath() + "/verMensaje?id=" + id);
-            return;
-        }
-
-        response.sendRedirect(request.getContextPath() + "/showMessages");
+        
+        // La lógica se ha movido a MessageDetailServlet
+        // Este POST ahora simplemente redirige al detalle del mensaje
+        String id = request.getParameter("id");
+        response.sendRedirect(request.getContextPath() + "/messageDetail?id=" + id);
     }
 }

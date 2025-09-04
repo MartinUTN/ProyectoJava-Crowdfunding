@@ -25,27 +25,25 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <c:forEach var="m" items="${mensajes}">
-                    <div class="message-card">
-                        <h3>${m.asunto}</h3>
-                        <p><strong>De:</strong> ${m.nombre} (${m.email})</p>
-                        <p><strong>Fecha:</strong> ${m.fecha}</p>
-                        <p><strong>Mensaje:</strong> ${m.mensaje}</p>
-
-                        <div class="message-actions">
-                            <form method="post" action="${pageContext.request.contextPath}/showMessages">
-                                <input type="hidden" name="id" value="${m.idContacto}">
-                                <input type="hidden" name="action" value="revisar">
-                                <button type="submit" class="btn btn-review">Revisar</button>
-                            </form>
-                            <form method="post" action="${pageContext.request.contextPath}/showMessages">
-                                <input type="hidden" name="id" value="${m.idContacto}">
-                                <input type="hidden" name="action" value="visto">
-                                <button type="submit" class="btn btn-seen">✔ Marcar como visto</button>
-                            </form>
+                <div class="messages-grid">
+                    <c:forEach var="m" items="${mensajes}">
+                        <div class="message-card">
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <h3>${m.asunto}</h3>
+                                </div>
+                                <p><strong>De:</strong> ${m.nombre} (${m.email})</p>
+                                <span class="message-date">${m.fechaFormateada}</span>
+                            </div>
+                            <div class="message-actions">
+                                <form method="post" action="${pageContext.request.contextPath}/showMessages">
+                                    <input type="hidden" name="id" value="${m.idContacto}">
+                                    <button type="submit" class="little-glow-btn">Revisar</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
             </c:otherwise>
         </c:choose>
     </main>
@@ -53,3 +51,4 @@
     <%@ include file="/views/fragments/footer.jspf" %>
 </body>
 </html>
+

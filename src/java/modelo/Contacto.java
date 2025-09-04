@@ -1,6 +1,8 @@
 package modelo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Contacto {
     private int idContacto;
@@ -56,5 +58,18 @@ public class Contacto {
 
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
+    }
+    
+    /**
+     * Devuelve la fecha y hora del mensaje en un formato legible.
+     * @return La fecha formateada como String (ej: "04 de septiembre de 2025, 19:30 hs").
+     */
+    public String getFechaFormateada() {
+        if (fecha == null) {
+            return "";
+        }
+        // Usamos Locale para asegurar que el mes se muestre en español
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy, HH:mm 'hs'", new Locale("es", "ES"));
+        return fecha.format(formatter);
     }
 }

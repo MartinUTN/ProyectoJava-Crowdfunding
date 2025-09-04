@@ -144,22 +144,57 @@ public class ProyectoDAO implements IProyectoDAO {
 
     @Override
     public List<Proyecto> obtenerActivos() {
+        return buscarProyectos(null); // Reutilizamos el método de búsqueda
+    }
+
+    @Override
+    public List<Proyecto> buscarProyectos(String query) {
         List<Proyecto> lista = new ArrayList<>();
         String sql = "SELECT p.*, c.nombreCategoria, pa.nombrePais " +
-                "FROM proyecto p " +
-                "JOIN categoria c ON p.idCategoria = c.idCategoria " +
-                "JOIN pais pa ON p.idPais = pa.idPais " +
-                "WHERE p.estado='Activo'";
+                     "FROM proyecto p " +
+                     "JOIN categoria c ON p.idCategoria = c.idCategoria " +
+                     "JOIN pais pa ON p.idPais = pa.idPais " +
+                     "WHERE p.estado='Activo'";
+        
+        if (query != null && !query.trim().isEmpty()) {
+            sql += " AND (p.nombreProyecto LIKE ? OR p.descripcion LIKE ?)";
+        }
+
         try (Connection con = Conexion.getConexion();
-             Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(sql)) {
-            while (rs.next()) {
-                lista.add(mapResultSetToProyecto(rs));
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            if (query != null && !query.trim().isEmpty()) {
+                ps.setString(1, "%" + query + "%");
+                ps.setString(2, "%" + query + "%");
+            }
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapResultSetToProyecto(rs));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return lista;
+    }
+    
+    @Override
+    public List<String> buscarSugerencias(String query) {
+        List<String> sugerencias = new ArrayList<>();
+        String sql = "SELECT nombreProyecto FROM proyecto WHERE nombreProyecto LIKE ? AND estado = 'Activo' LIMIT 5";
+        try (Connection con = Conexion.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + query + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    sugerencias.add(rs.getString("nombreProyecto"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sugerencias;
     }
 
     @Override
@@ -241,3 +276,4 @@ public class ProyectoDAO implements IProyectoDAO {
         }
     }
 }
+

@@ -20,10 +20,26 @@
     <jsp:include page="/views/fragments/header.jspf"/>
 
     <main class="projects-container">
-        <h1>Proyectos Activos</h1>
+        <c:choose>
+            <c:when test="${not empty searchQuery}">
+                <h1>Resultados para: "${searchQuery}"</h1>
+            </c:when>
+            <c:otherwise>
+                <h1>Proyectos Activos</h1>
+            </c:otherwise>
+        </c:choose>
 
         <c:if test="${empty activeProjects}">
-            <p class="no-projects">No hay proyectos activos en este momento.</p>
+            <p class="no-projects">
+                <c:choose>
+                    <c:when test="${not empty searchQuery}">
+                        No se encontraron proyectos que coincidan con tu búsqueda.
+                    </c:when>
+                    <c:otherwise>
+                        No hay proyectos activos en este momento.
+                    </c:otherwise>
+                </c:choose>
+            </p>
         </c:if>
 
         <div class="card-grid">
